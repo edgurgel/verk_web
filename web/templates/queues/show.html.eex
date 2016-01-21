@@ -4,13 +4,16 @@
 <% else %>
 <h3>Running jobs</h3>
 <table class="table">
-  <tr>
-    <th>Id</th>
-    <th>Enqueued at</th>
-    <th>Started at</th>
-    <th>Class/Worker</th>
-    <th>Arguments</th>
-  </tr>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Enqueued at</th>
+      <th>Started at</th>
+      <th>Class/Worker</th>
+      <th>Arguments</th>
+    </tr>
+  </thead>
+  <tbody>
   <%= for job <- jobs(@running_jobs) do %>
     <tr>
       <td><%= job.jid %></td>
@@ -20,6 +23,7 @@
       <td><%= job.args %></td>
     </tr>
   <% end %>
+  </tbody>
 </table>
 </ul>
 <% end %>
