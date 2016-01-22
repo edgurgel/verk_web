@@ -19,5 +19,6 @@ defmodule VerkWeb.Router do
     get "/", PageController, :index
     get "/queues/:queue", QueuesController, :show
     get "/retries", RetriesController, :index
+    delete "/retries", RetriesController, :destroy
   end
 end

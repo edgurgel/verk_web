@@ -7,6 +7,7 @@
   "gettext": {:hex, :gettext, "0.9.0"},
   "hackney": {:hex, :hackney, "1.4.8"},
   "idna": {:hex, :idna, "1.0.3"},
+  "meck": {:hex, :meck, "0.8.4"},
   "mimerl": {:hex, :mimerl, "1.0.2"},
   "phoenix": {:hex, :phoenix, "1.1.1"},
   "phoenix_html": {:hex, :phoenix_html, "2.3.1"},

@@ -15,4 +15,12 @@ defmodule VerkWeb.RetriesController do
       from: paginator.from,
       to: paginator.to
   end
+
+  def destroy(conn, params) do
+    jobs_to_remove = params["jobs_to_remove"] || []
+
+    for job <- jobs_to_remove, do: Verk.RetrySet.delete_job(job)
+
+    redirect conn, to: retries_path(conn, :index)
+  end
 end
