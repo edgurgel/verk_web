@@ -1,0 +1,36 @@
+<h2>Failed jobs waiting to be retried</h2>
+<%= if @failed_jobs |> Enum.empty? do %>
+<p>No jobs waiting to be retried at the moment.</p>
+<% else %>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Retry count</th>
+      <th>Enqueued at</th>
+      <th>Class/Worker</th>
+      <th>Arguments</th>
+    </tr>
+  </thead>
+  <tbody>
+  <%= for job <- jobs(@failed_jobs) do %>
+    <tr>
+      <td><%= job.jid %></td>
+      <td><%= job.retry_count %></td>
+      <td><%= job.enqueued_at %>
+      <td><%= job.class %></td>
+      <td><%= job.args %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+
+<p>
+<%= if @has_prev do %>
+  <span><%= link "Previous", to: retries_path(@conn, :index, page: @page - 1, per_page: @per_page )%></span>
+<% end %>
+<%= if @has_next do %>
+  <span><%= link "Next", to: retries_path(@conn, :index, page: @page + 1, per_page: @per_page ) %></span>
+<% end %>
+</p>
+<% end %>

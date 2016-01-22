@@ -26,6 +26,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <%= menu_item(@conn, page_path(@conn, :index), "Home") %>
+            <%= menu_item(@conn, retries_path(@conn, :index), "Retries (#{retries_count})") %>
           </ul>
         </div>
       </div>
