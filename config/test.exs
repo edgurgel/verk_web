@@ -8,3 +8,5 @@ config :verk_web, VerkWeb.Endpoint,
 
 # Print only warnings and errors during test
 config :logger, level: :warn
+
+config :verk, queues: [{:default, 1}], redis_url: "redis://127.0.0.1:6379/1"

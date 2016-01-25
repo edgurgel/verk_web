@@ -17,6 +17,8 @@ defmodule VerkWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
-    get "/queues/:queue/dashboard", DashboardController, :show
+    get "/queues/:queue", QueuesController, :show
+    get "/retries", RetriesController, :index
+    delete "/retries", RetriesController, :destroy
   end
 end

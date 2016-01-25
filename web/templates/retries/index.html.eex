@@ -1,0 +1,51 @@
+<h2>Failed jobs waiting to be retried</h2>
+
+<%= if @failed_jobs |> Enum.empty? do %>
+  <p>No jobs waiting to be retried at the moment.</p>
+<% else %>
+  <div>
+  <%= form_for @conn, retries_path(@conn, :destroy), [name: :delete_job, method: "DELETE"], fn f -> %>
+    <table class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Id</th>
+          <th>Retry count</th>
+          <th>Enqueued at</th>
+          <th>Class/Worker</th>
+          <th>Arguments</th>
+        </tr>
+      </thead>
+      <tbody>
+      <%= for job <- jobs(@failed_jobs) do %>
+        <tr>
+          <td><input name="jobs_to_remove[]" type="checkbox" value="<%= job.original_json %>" id="job_<%= job.jid %>" /></td>
+          <td><%= job.jid %></td>
+          <td><%= job.retry_count %></td>
+          <td><%= job.enqueued_at %>
+          <td><%= job.class %></td>
+          <td><%= job.args %></td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+    <div class="row">
+      <div class="col-md-4">
+        <%= submit "Delete selected", class: "btn btn-danger" %>
+      </div>
+
+      <div class="col-md-8 text-right">
+        <%= if @has_prev do %>
+          <span><%= link "Previous", to: retries_path(@conn, :index, page: @page - 1, per_page: @per_page), class: "btn btn-default" %></span>
+        <% end %>
+
+        <%= if @has_next do %>
+          <span><%= link "Next", to: retries_path(@conn, :index, page: @page + 1, per_page: @per_page), class: "btn btn-default" %></span>
+        <% end %>
+      </div>
+    </div>
+
+  <% end %>
+  </div>
+<% end %>

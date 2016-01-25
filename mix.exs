@@ -17,7 +17,7 @@ defmodule VerkWeb.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [mod: {VerkWeb, []},
-     applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext]]
+     applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext, :verk]]
   end
 
   # Specifies which paths to compile per environment.
@@ -33,6 +33,7 @@ defmodule VerkWeb.Mixfile do
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:gettext, "~> 0.9"},
      {:verk, "~> 0.9"},
-     {:cowboy, "~> 1.0"}]
+     {:cowboy, "~> 1.0"},
+     {:meck, "~> 0.8", only: :test}]
   end
 end

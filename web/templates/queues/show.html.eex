@@ -1,0 +1,29 @@
+<h2>Queue: <%= @queue %></h2>
+<%= if @running_jobs |> Enum.empty? do %>
+<p>No running jobs at the moment.</p>
+<% else %>
+<h3>Running jobs</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Enqueued at</th>
+      <th>Started at</th>
+      <th>Class/Worker</th>
+      <th>Arguments</th>
+    </tr>
+  </thead>
+  <tbody>
+  <%= for job <- jobs(@running_jobs) do %>
+    <tr>
+      <td><%= job.jid %></td>
+      <td><%= job.enqueued_at %></td>
+      <td><%= job.started_at %>
+      <td><%= job.class %></td>
+      <td><%= job.args %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+</ul>
+<% end %>
