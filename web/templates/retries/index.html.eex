@@ -4,7 +4,8 @@
   <p>No jobs waiting to be retried at the moment.</p>
 <% else %>
   <div>
-  <%= form_for @conn, retries_path(@conn, :destroy), [name: :delete_job, method: "DELETE"], fn f -> %>
+    <%= form_for @conn, retries_path(@conn, :destroy), [as: :delete_job, method: "DELETE"], fn _ -> %>
+    <input name="jobs_to_remove[]" type="hidden" value="" />
     <table class="table">
       <thead>
         <tr>
@@ -32,7 +33,7 @@
 
     <div class="row">
       <div class="col-md-4">
-        <%= submit "Delete selected", class: "btn btn-danger" %>
+        <%= submit "Delete selected", class: "btn btn-danger btn-sm" %>
       </div>
 
       <div class="col-md-8 text-right">
@@ -47,5 +48,8 @@
     </div>
 
   <% end %>
+    <p>
+      <%= button "Delete all", to: retries_path(@conn, :destroy, a: "true"), method: :delete, data: [confirm: "Are you sure?"], form: [a: "b"], class: "btn btn-danger btn-sm" %>
+    </p>
   </div>
 <% end %>
