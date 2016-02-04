@@ -9,7 +9,8 @@ defmodule VerkWeb.QueuesView do
         enqueued_at: job.enqueued_at |> Timex.Date.from(:secs) |> Timex.DateFormat.format!("{ISO}"),
         started_at: running_job.started_at |> Timex.DateFormat.format!("{ISO}"),
         class: job.class,
-        args: job.args |> inspect
+        args: job.args |> inspect,
+        job: job
       }
     end
   end

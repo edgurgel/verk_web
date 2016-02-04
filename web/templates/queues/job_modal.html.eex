@@ -1,0 +1,51 @@
+<div class="modal fade" id="job-<%= @job.jid %>-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Job <%= @job.jid %></h4>
+      </div>
+      <div class="modal-body">
+        <table class="table">
+          <tbody>
+          <tr>
+            <th>Enqueued at</th>
+            <td><%= @job.enqueued_at |> Timex.Date.from(:secs) |> Timex.DateFormat.format!("{ISO}") %></td>
+          </tr>
+          <tr>
+            <th>Finished at</th>
+            <td><%= @job.finished_at %></td>
+          </tr>
+          <tr>
+            <th>Failed at</th>
+            <td><%= @job.failed_at %></td>
+          </tr>
+          <tr>
+            <th>Queue</th>
+            <td><%= @job.queue %></td>
+          </tr>
+          <tr>
+            <th>Class/Worker</th>
+            <td><%= @job.class %></td>
+          </tr>
+          <tr>
+            <th>Args</th>
+            <td><pre><%= @job.args |> inspect %></pre></td>
+          </tr>
+          <tr>
+            <th>Retry Count</th>
+            <td><%= @job.retry_count %></td>
+          </tr>
+          <tr>
+            <th>Error Message</th>
+            <td><pre><%= @job.error_message %></pre></td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
