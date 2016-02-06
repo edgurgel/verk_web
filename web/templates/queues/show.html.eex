@@ -1,37 +1,46 @@
-<h2>Queue: <%= @queue %></h2>
-<%= if @running_jobs |> Enum.empty? do %>
-<p>No running jobs at the moment.</p>
-<% else %>
-<h3>Running jobs</h3>
-<table class="table">
-  <thead>
-    <tr>
-      <th>Id</th>
-      <th>Enqueued at</th>
-      <th>Started at</th>
-      <th>Class/Worker</th>
-      <th>Arguments</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-  <%= for job <- jobs(@running_jobs) do %>
-    <tr>
-      <td><%= job.jid %></td>
-      <td><%= job.enqueued_at %></td>
-      <td><%= job.started_at %>
-      <td><%= job.class %></td>
-      <td><%= job.args %></td>
-      <td>
-        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#job-<%= job.jid %>-modal">
-          Details
-        </button>
+<h2>Enqueued jobs in <em><%= @queue %></em> queue</h2>
 
-        <%= render "job_modal.html", job: job.job %>
-      </td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
-</ul>
+<%= if @enqueued_jobs |> Enum.empty? do %>
+  <p>No enqueued jobs.</p>
+<% else %>
+  <div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Id</th>
+          <th>Enqueued at</th>
+          <th>Class/Worker</th>
+          <th>Arguments</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+      <%= for job <- enqueued_jobs(@enqueued_jobs) do %>
+        <tr>
+          <td><%= job.jid %></td>
+          <td><%= job.enqueued_at %>
+          <td><%= job.class %></td>
+          <td><%= job.args %></td>
+          <td>
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#job-<%= job.jid %>-modal">
+              Details
+            </button>
+
+            <%= render VerkWeb.SharedView, "job_modal.html", job: job.job %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+    <div>
+      <%= if @has_prev do %>
+        <span><%= link "Previous", to: queues_path(@conn, :show, @queue, page: @page - 1, per_page: @per_page), class: "btn btn-default" %></span>
+      <% end %>
+
+      <%= if @has_next do %>
+        <span><%= link "Next", to: queues_path(@conn, :show, @queue, page: @page + 1, per_page: @per_page), class: "btn btn-default" %></span>
+      <% end %>
+    </div>
+  </div>
 <% end %>
