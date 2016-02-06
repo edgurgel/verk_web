@@ -1,25 +1,27 @@
 <%= if Enum.empty?(@queue_stats) do %>
   <p>No job was started yet.</p>
 <% else %>
-<h2>Running queues stats</h2>
-<table class="table">
-  <thead>
-    <tr>
-      <th>Queue</th>
-      <th># Running</th>
-      <th># Finished</th>
-      <th># Failed</th>
-    </tr>
-  </thead>
-  <tbody>
-    <%= for queue <- @queue_stats do %>
+  <h2>Running queues stats</h2>
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= link queue.queue, to: queues_path(@conn, :show, queue.queue) %></td>
-        <td><%= queue.running_counter %></td>
-        <td><%= queue.finished_counter %></td>
-        <td><%= queue.failed_counter %></td>
+        <th>Queue</th>
+        <th># Running</th>
+        <th># Enqueued</th>
+        <th># Finished</th>
+        <th># Failed</th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+    <tbody>
+      <%= for queue <- stats(@queue_stats) do %>
+        <tr>
+          <td><%= link queue.queue, to: queues_path(@conn, :show, queue.queue) %></td>
+          <td><%= link queue.running_counter |> to_string , to: queues_path(@conn, :busy, queue.queue) %></td>
+          <td><%= link queue.enqueued_counter |> to_string, to: queues_path(@conn, :show, queue.queue) %></td>
+          <td><%= queue.finished_counter %></td>
+          <td><%= queue.failed_counter %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 <% end %>
