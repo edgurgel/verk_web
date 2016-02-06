@@ -11,9 +11,7 @@ defmodule VerkWeb.RetriesController do
       has_next: paginator.has_next,
       has_prev: paginator.has_prev,
       page: paginator.page,
-      per_page: paginator.per_page,
-      from: paginator.from,
-      to: paginator.to
+      per_page: paginator.per_page
   end
 
   def destroy(conn, %{ "jobs_to_remove" => jobs_to_remove }) do
