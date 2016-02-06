@@ -1,4 +1,4 @@
-defmodule VerkWeb.RetrySetPaginator do
+defmodule VerkWeb.RangePaginator do
   defstruct [:page, :per_page, :from, :to, :has_next, :has_prev]
 
   def new(total_entries, page \\ 1, per_page \\ 20) do
@@ -10,7 +10,7 @@ defmodule VerkWeb.RetrySetPaginator do
     has_next = total_entries - 1 > to
     has_prev = page > 1
 
-    %VerkWeb.RetrySetPaginator{
+    %VerkWeb.RangePaginator{
       page: page,
       per_page: per_page,
       from: from,
