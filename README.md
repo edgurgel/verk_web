@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/edgurgel/verk_web.svg?branch=master)](https://travis-ci.org/edgurgel/verk_web)
+[![Hex pm](http://img.shields.io/hexpm/v/verk_web.svg?style=flat)](https://hex.pm/packages/verk_web)
+[![Coverage Status](https://coveralls.io/repos/edgurgel/verk_web/badge.svg?branch=master&service=github)](https://coveralls.io/github/edgurgel/verk_web?branch=master)
 # VerkWeb
 
 ## Development
