@@ -35,8 +35,8 @@ defmodule VerkWeb.Mixfile do
      {:verk, "~> 0.9"},
      {:cowboy, "~> 1.0"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
-     {:earmark, "~> 0.1.17", only: :docs},
-     {:ex_doc, "~> 0.8.0", only: :docs},
+     {:earmark, "~> 0.1.17", only: :dev},
+     {:ex_doc, "~> 0.8.0", only: :dev},
      {:coverex, "~> 1.4.7", only: :test},
      {:meck, "~> 0.8", only: :test}]
   end
