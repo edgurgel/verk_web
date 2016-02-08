@@ -18,6 +18,6 @@
   "ranch": {:hex, :ranch, "1.2.0"},
   "redix": {:hex, :redix, "0.3.4"},
   "ssl_verify_hostname": {:hex, :ssl_verify_hostname, "1.0.5"},
-  "timex": {:hex, :timex, "1.0.0"},
+  "timex": {:hex, :timex, "1.0.1"},
   "tzdata": {:hex, :tzdata, "0.5.6"},
-  "verk": {:hex, :verk, "0.9.5"}}
+  "verk": {:hex, :verk, "0.9.6"}}
