@@ -42,8 +42,9 @@ defmodule VerkWeb.Mixfile do
   end
 
   defp package do
-    [ maintainers: ["Eduardo Gurgel Pinho", "Alisson Sales"],
-      licenses: ["MIT"],
-      links: %{"Github" => "https://github.com/edgurgel/verk_web"} ]
+    [maintainers: ["Eduardo Gurgel Pinho", "Alisson Sales"],
+     licenses: ["MIT"],
+     links: %{"Github" => "https://github.com/edgurgel/verk_web"},
+     files: ["lib", "web", "priv", "mix.exs", "README*", "readme*", "LICENSE*", "license*"]]
   end
 end
