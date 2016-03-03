@@ -38,3 +38,11 @@ def application do
   [applications: [:verk_web, :verk]]
 end
 ```
+
+## What it looks like
+
+![](http://i.imgur.com/AclG57m.png)
+
+![](http://i.imgur.com/oC9Ven3.png)
+
+![](http://i.imgur.com/pktr4Zv.png)
