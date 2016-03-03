@@ -9,7 +9,6 @@ use Mix.Config
 config :verk_web, VerkWeb.Endpoint,
   url: [host: "localhost"],
   root: Path.dirname(__DIR__),
-  secret_key_base: "NnVD42IPn6ciZm+YWuH9d+QDWwy70D0e9f+HUUwKr038+jqoKTq6qU5r4CJZM4L6",
   render_errors: [accepts: ~w(html json)],
   pubsub: [name: VerkWeb.PubSub,
            adapter: Phoenix.PubSub.PG2]

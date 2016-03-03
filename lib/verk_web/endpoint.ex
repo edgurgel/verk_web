@@ -29,9 +29,9 @@ defmodule VerkWeb.Endpoint do
   plug Plug.Head
 
   plug Plug.Session,
-    store: :cookie,
-    key: "_verk_web_key",
-    signing_salt: "RqGexWNP"
+    store: :ets,
+    key: "verk_web_sid",
+    table: :verk_web_session
 
   plug VerkWeb.Router
 end

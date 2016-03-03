@@ -1,26 +1,17 @@
 defmodule VerkWeb do
   use Application
 
-  # See http://elixir-lang.org/docs/stable/elixir/Application.html
-  # for more information on OTP Applications
+  @doc false
   def start(_type, _args) do
     import Supervisor.Spec, warn: false
 
-    children = [
-      # Start the endpoint when the application starts
-      supervisor(VerkWeb.Endpoint, []),
-      # Here you could define other workers and supervisors as children
-      # worker(VerkWeb.Worker, [arg1, arg2, arg3]),
-    ]
-
-    # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html
-    # for other strategies and supported options
+    children = [supervisor(VerkWeb.Endpoint, [])]
+    :ets.new(:verk_web_session, [:named_table, :public, read_concurrency: true])
     opts = [strategy: :one_for_one, name: VerkWeb.Supervisor]
     Supervisor.start_link(children, opts)
   end
 
-  # Tell Phoenix to update the endpoint configuration
-  # whenever the application is updated.
+  @doc false
   def config_change(changed, _new, removed) do
     VerkWeb.Endpoint.config_change(changed, removed)
     :ok
