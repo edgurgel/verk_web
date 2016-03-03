@@ -5,7 +5,6 @@ defmodule VerkWeb.QueuesView do
     Enum.map jobs, fn job ->
       %{
         jid: job.jid,
-        enqueued_at: job.enqueued_at |> Timex.Date.from(:secs) |> Timex.DateFormat.format!("{ISO}"),
         class: job.class,
         args: job.args |> inspect,
         job: job
@@ -18,7 +17,6 @@ defmodule VerkWeb.QueuesView do
       job = running_job.job
       %{
         jid: job.jid,
-        enqueued_at: job.enqueued_at |> Timex.Date.from(:secs) |> Timex.DateFormat.format!("{ISO}"),
         started_at: running_job.started_at |> Timex.DateFormat.format!("{ISO}"),
         class: job.class,
         args: job.args |> inspect,

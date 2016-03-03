@@ -8,7 +8,6 @@
       <thead>
         <tr>
           <th>Id</th>
-          <th>Enqueued at</th>
           <th>Class/Worker</th>
           <th>Arguments</th>
           <th></th>
@@ -18,7 +17,6 @@
       <%= for job <- enqueued_jobs(@enqueued_jobs) do %>
         <tr>
           <td><%= job.jid %></td>
-          <td><%= job.enqueued_at %>
           <td><%= job.class %></td>
           <td><%= job.args %></td>
           <td>
