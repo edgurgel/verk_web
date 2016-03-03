@@ -12,7 +12,6 @@
           <th></th>
           <th>Id</th>
           <th>Retry count</th>
-          <th>Enqueued at</th>
           <th>Class/Worker</th>
           <th>Arguments</th>
           <th></th>
@@ -24,7 +23,6 @@
           <td><input name="jobs_to_remove[]" type="checkbox" value="<%= job.original_json %>" id="job_<%= job.jid %>" /></td>
           <td><%= job.jid %></td>
           <td><%= job.retry_count %></td>
-          <td><%= job.enqueued_at %>
           <td><%= job.class %></td>
           <td><%= job.args %></td>
           <td>
