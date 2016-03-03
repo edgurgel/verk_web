@@ -10,7 +10,7 @@
           <tbody>
           <tr>
             <th>Enqueued at</th>
-            <td><%= @job.enqueued_at |> Timex.Date.from(:secs) |> Timex.DateFormat.format!("{ISO}") %></td>
+            <td><%= enqueued_at(@job.enqueued_at) %></td>
           </tr>
           <tr>
             <th>Finished at</th>
