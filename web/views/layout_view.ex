@@ -7,6 +7,7 @@ defmodule VerkWeb.LayoutView do
   end
 
   def retries_count do
-    Verk.RetrySet.count
+    count = Verk.RetrySet.count
+    ["Retries ", content_tag(:span, to_string(count), class: "badge")]
   end
 end
