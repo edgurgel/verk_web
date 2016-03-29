@@ -8,7 +8,7 @@
         <th>Queue</th>
         <th># Running</th>
         <th># Enqueued</th>
-        <th># Finished</th>
+        <th># Processed</th>
         <th># Failed</th>
       </tr>
     </thead>
