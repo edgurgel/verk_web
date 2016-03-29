@@ -37,5 +37,11 @@
     </div>
 
     <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+    <footer class="footer navbar-default">
+      <div class="container">
+        <h4>Overall stats</h4>
+        <p class="text-muted"> <%= total_stats %> </p>
+      </div>
+    </footer>
   </body>
 </html>

@@ -10,4 +10,13 @@ defmodule VerkWeb.LayoutView do
     count = Verk.RetrySet.count
     ["Retries ", content_tag(:span, to_string(count), class: "badge")]
   end
+
+  def total_stats do
+    total_stats = Verk.Stats.total
+    processed = [content_tag(:strong, "Processed: "), to_string(total_stats.processed)]
+    failed    = [content_tag(:strong, "Failed: "), to_string(total_stats.failed)]
+    content_tag :ul, class: "list-inline" do
+      [content_tag(:li, processed), content_tag(:li, failed)]
+    end
+  end
 end
