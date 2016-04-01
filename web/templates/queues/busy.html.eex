@@ -25,7 +25,7 @@
           Details
         </button>
 
-        <%= render VerkWeb.SharedView, "job_modal.html", job: job.job %>
+        <%= render VerkWeb.SharedView, "job_modal.html", job: job.job, conn: @conn %>
       </td>
     </tr>
   <% end %>
