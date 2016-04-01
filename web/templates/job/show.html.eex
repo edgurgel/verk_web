@@ -1,0 +1,32 @@
+<table class="table">
+  <tbody>
+  <tr>
+    <th>Job id</th>
+    <td><%= @job_id %></td>
+  </tr>
+  <tr>
+    <th>Queue</th>
+    <td><%= @queue %></td>
+  </tr>
+  <tr>
+    <th>Started At</th>
+    <td><%= utc_format(@started_at) %></td>
+  </tr>
+  <tr>
+    <th>Process</th>
+    <td><%= @process %></td>
+  </tr>
+  <tr>
+    <th>Status</th>
+    <td><%= info(@info, :status) %></td>
+  </tr>
+  <tr>
+    <th>Reductions</th>
+    <td><%= info(@info, :reductions) %></td>
+  </tr>
+  <tr>
+    <th>Current Stacktrace</th>
+    <td><%= current_stacktrace(@info) %></td>
+  </tr>
+  </tbody>
+</table>
