@@ -22,7 +22,7 @@ defmodule VerkWeb.Mixfile do
 
   def application do
     [mod: {VerkWeb, []},
-     env: [{VerkWeb.Endpoint, [http: [port: 4000], cache_static_manifest: "priv/static/manifest.json", server: true]}],
+     env: [{VerkWeb.Endpoint, [http: [port: 4000], server: false]}],
      applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext, :verk]]
   end
 
@@ -33,7 +33,7 @@ defmodule VerkWeb.Mixfile do
     [{:phoenix, "~> 1.1.1"},
      {:phoenix_html, "~> 2.3"},
      {:gettext, "~> 0.9"},
-     {:verk, "~> 0.9.12"},
+     {:verk, "~> 0.10"},
      {:cowboy, "~> 1.0"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:earmark, "~> 0.1.17", only: :dev},
