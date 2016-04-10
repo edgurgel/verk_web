@@ -3,6 +3,6 @@ defmodule VerkWeb.SharedView do
 
   def enqueued_at(nil), do: "N/A"
   def enqueued_at(timestamp) do
-    timestamp |> Timex.from_seconds |> Timex.format!("{ISO}")
+    timestamp |> Timex.DateTime.from_seconds |> Timex.format!("{ISO}")
   end
 end
