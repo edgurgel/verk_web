@@ -1,20 +1,13 @@
 [![Build Status](https://travis-ci.org/edgurgel/verk_web.svg?branch=master)](https://travis-ci.org/edgurgel/verk_web)
 [![Hex pm](http://img.shields.io/hexpm/v/verk_web.svg?style=flat)](https://hex.pm/packages/verk_web)
 [![Coverage Status](https://coveralls.io/repos/edgurgel/verk_web/badge.svg?branch=master&service=github)](https://coveralls.io/github/edgurgel/verk_web?branch=master)
+
 # VerkWeb
 
-## Development
-
-To start Verk Web app:
-
-  1. Install dependencies with `mix deps.get`
-  1. Install front-end dependencies `npm install && bower install`
-  1. Start Phoenix endpoint with `mix phoenix.server`
-
-Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+Web interface for [Verk](https://github.com/edgurgel/verk)
 
 
-## Using 
+## Installation
 
 First, add Verk Web to your `mix.exs` dependencies:
 
@@ -25,7 +18,7 @@ def deps do
 end
 ```
 
-and run 
+and run
 
 ```
 $ mix deps.get
@@ -39,12 +32,45 @@ def application do
 end
 ```
 
+## If you'd like to mount VerkWeb on another Endpoint:
+
+
+```elixir
+defmodule MyApp.Endpoint do
+  use VerkWeb.Mount, path: "/verk"
+  ...
+end
+```
+
+That should be it! :)
+
+## If you'd like to run VerkWeb as stand-alone Endpoint on a different port than the main application:
+
+```elixir
+# in config.exs:
+config :verk_web, VerkWeb.Endpoint,
+  http: [port: 4000],
+  server: true #-> this is to tell VerkWeb to start a standalone application!
+```
+Now VerkWeb would run on port 4000,
+
+
+
 ## What it looks like
 
 ![](http://i.imgur.com/AclG57m.png)
-
 ![](http://i.imgur.com/oC9Ven3.png)
-
 ![](http://i.imgur.com/pktr4Zv.png)
-
 ![](https://cloud.githubusercontent.com/assets/30873/14195722/1a1d7b54-f819-11e5-90fd-c1ff8b7f4613.png)
+
+
+## Development
+
+To start Verk Web app:
+
+  1. Install dependencies with `mix deps.get`
+  1. Install front-end dependencies `npm install && bower install`
+  1. Start Phoenix endpoint with `mix phoenix.server`
+
+Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
+

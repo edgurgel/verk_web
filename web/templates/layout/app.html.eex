@@ -8,7 +8,7 @@
     <meta name="author" content="">
 
     <title>Verk Dashboard</title>
-    <link rel="stylesheet" href="<%= static_path(@conn, "/css/app.css") %>">
+    <link rel="stylesheet" href="<%= mount_static_path(@conn, "/css/app.css") %>">
   </head>
 
   <body>
@@ -21,7 +21,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <div id="header_logo"><img src="<%= static_path(@conn, "/images/vamp_header.png") %>"></div>
+          <div id="header_logo"><img src="<%= mount_static_path(@conn, "/images/vamp_header.png") %>"></div>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
@@ -36,7 +36,8 @@
       <%= render @view_module, @view_template, assigns %>
     </div>
 
-    <script src="<%= static_path(@conn, "/js/app.js") %>"></script>
+    <script> MOUNT_PATH = "<%= @conn.assigns[:mount_path] %>"</script>
+    <script src="<%= mount_static_path(@conn, "/js/app.js") %>"></script>
     <footer class="footer navbar-default">
       <div class="container">
         <h4>All-time stats</h4>
