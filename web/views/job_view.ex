@@ -12,6 +12,6 @@ defmodule VerkWeb.JobView do
   end
 
   def utc_format(time) do
-    time |> Timex.DateFormat.format!("{ISO}")
+    time |> Timex.format!("{ISO}")
   end
 end

@@ -17,7 +17,7 @@ defmodule VerkWeb.QueuesView do
       job = running_job.job
       %{
         jid: job.jid,
-        started_at: running_job.started_at |> Timex.DateFormat.format!("{ISO}"),
+        started_at: running_job.started_at |> Timex.format!("{ISO}"),
         class: job.class,
         args: job.args |> inspect,
         job: job
