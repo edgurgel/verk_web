@@ -3,6 +3,6 @@ defmodule VerkWeb.PageControllerTest do
 
   test "GET /", %{conn: conn} do
     conn = get conn, "/"
-    assert html_response(conn, 200) =~ "No job was started yet."
+    assert html_response(conn, 200) =~ "Running queues stats"
   end
 end

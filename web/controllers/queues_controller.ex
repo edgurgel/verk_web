@@ -3,11 +3,11 @@ defmodule VerkWeb.QueuesController do
 
   def show(conn, %{ "queue" => queue }) do
     params = conn.params
-    paginator = VerkWeb.RangePaginator.new(Verk.Queue.count(queue), params["page"], params["per_page"])
+    paginator = VerkWeb.RangePaginator.new(Verk.Queue.count!(queue), params["page"], params["per_page"])
 
     render conn, "show.html",
       queue: queue,
-      enqueued_jobs: Verk.Queue.range(queue, paginator.from, paginator.to),
+      enqueued_jobs: Verk.Queue.range!(queue, paginator.from, paginator.to),
       has_next: paginator.has_next,
       has_prev: paginator.has_prev,
       page: paginator.page,
