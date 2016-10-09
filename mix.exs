@@ -46,6 +46,6 @@ defmodule VerkWeb.Mixfile do
     [maintainers: ["Eduardo Gurgel Pinho", "Alisson Sales"],
      licenses: ["MIT"],
      links: %{"Github" => "https://github.com/edgurgel/verk_web"},
-     files: ["lib", "web", "priv", "mix.exs", "README*", "readme*", "LICENSE*", "license*"]]
+     files: ["lib", "web", "priv", "mix.exs", "README*", "LICENSE*"]]
   end
 end
