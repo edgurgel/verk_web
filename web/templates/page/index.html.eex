@@ -10,6 +10,8 @@
         <th># Enqueued</th>
         <th># Processed</th>
         <th># Failed</th>
+        <th># Lifetime Processed</th>
+        <th># Lifetime Failed</th>
       </tr>
     </thead>
     <tbody>
@@ -20,6 +22,8 @@
           <td><%= link queue.enqueued_counter |> to_string, to: queues_path(@conn, :show, queue.queue) %></td>
           <td><%= queue.finished_counter %></td>
           <td><%= queue.failed_counter %></td>
+          <td><%= queue.total_processed %></td>
+          <td><%= queue.total_failed %></td>
         </tr>
       <% end %>
     </tbody>
