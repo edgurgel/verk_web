@@ -1,0 +1,61 @@
+<h2>Dead jobs which have exceeded the allotted number of retries</h2>
+
+<%= if @dead_jobs |> Enum.empty? do %>
+  <p>No dead jobs at the moment.</p>
+<% else %>
+  <div>
+    <%= form_for @conn, dead_path(@conn, :destroy), [as: :delete_job, method: "DELETE"], fn _ -> %>
+    <input name="jobs_to_remove[]" type="hidden" value="" />
+    <table class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th>Id</th>
+          <th>Retry count</th>
+          <th>Class/Worker</th>
+          <th>Arguments</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+      <%= for job <- jobs(@dead_jobs) do %>
+        <tr>
+          <td><input name="jobs_to_remove[]" type="checkbox" value="<%= job.original_json %>" id="job_<%= job.jid %>" /></td>
+          <td><%= job.jid %></td>
+          <td><%= job.retry_count %></td>
+          <td><%= job.class %></td>
+          <td><%= job.args %></td>
+          <td>
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#job-<%= job.jid %>-modal">
+              Details
+            </button>
+
+            <%= render VerkWeb.SharedView, "job_modal.html", job: job.job, conn: @conn %>
+          </td>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+
+    <div class="row">
+      <div class="col-md-4">
+        <%= submit "Delete selected", class: "btn btn-danger btn-sm" %>
+      </div>
+
+      <div class="col-md-8 text-right">
+        <%= if @has_prev do %>
+          <span><%= link "Previous", to: dead_path(@conn, :index, page: @page - 1, per_page: @per_page), class: "btn btn-default" %></span>
+        <% end %>
+
+        <%= if @has_next do %>
+          <span><%= link "Next", to: dead_path(@conn, :index, page: @page + 1, per_page: @per_page), class: "btn btn-default" %></span>
+        <% end %>
+      </div>
+    </div>
+
+  <% end %>
+    <p>
+      <%= button "Delete all", to: dead_path(@conn, :destroy, a: "true"), method: :delete, data: [confirm: "Are you sure?"], form: [a: "b"], class: "btn btn-danger btn-sm" %>
+    </p>
+  </div>
+<% end %>

@@ -15,6 +15,11 @@ defmodule VerkWeb.LayoutView do
     ["Retries ", content_tag(:span, to_string(count), class: "badge")]
   end
 
+  def dead_count do
+    count = Verk.DeadSet.count!
+    ["Dead ", content_tag(:span, to_string(count), class: "badge")]
+  end
+
   def total_stats do
     total_stats = Verk.Stats.total
     processed = [content_tag(:strong, "Processed: "), to_string(total_stats.processed)]
