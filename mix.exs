@@ -31,7 +31,7 @@ defmodule VerkWeb.Mixfile do
 
   defp deps do
     [{:phoenix, "~> 1.1.6"},
-     {:phoenix_html, "~> 2.3"},
+     {:phoenix_html, "~> 2.6"},
      {:gettext, "~> 0.9"},
      {:verk, "~> 0.13"},
      {:cowboy, "~> 1.0"},
