@@ -25,5 +25,5 @@
   "redix": {:hex, :redix, "0.4.0", "c8cfad755252e5441c4119437ba3a8989518af7aa90dbd6f4ff7207b72e4a967", [:mix], [{:connection, "~> 1.0.0", [hex: :connection, optional: false]}]},
   "ssl_verify_fun": {:hex, :ssl_verify_fun, "1.1.0", "edee20847c42e379bf91261db474ffbe373f8acb56e9079acb6038d4e0bf414f", [:rebar, :make], []},
   "ssl_verify_hostname": {:hex, :ssl_verify_hostname, "1.0.5"},
-  "verk": {:hex, :verk, "0.13.1", "7c9940a49abf903040fed8424bf4f2bd67363b8e85647ca470bcd2621967fa9d", [:mix], [{:poison, "~> 2.0", [hex: :poison, optional: false]}, {:poolboy, "~> 1.5.1", [hex: :poolboy, optional: false]}, {:redix, "~> 0.4", [hex: :redix, optional: false]}, {:watcher, "~> 1.0", [hex: :watcher, optional: false]}]},
+  "verk": {:hex, :verk, "0.13.2", "7028f7dba362c6119ac8d556b7726247e447e85a92e2ba7fb9e63a4b528535e5", [:mix], [{:poison, "~> 2.0", [hex: :poison, optional: false]}, {:poolboy, "~> 1.5.1", [hex: :poolboy, optional: false]}, {:redix, "~> 0.4", [hex: :redix, optional: false]}, {:watcher, "~> 1.0", [hex: :watcher, optional: false]}]},
   "watcher": {:hex, :watcher, "1.0.0", "0d9a43d0f1f3997b75775fc873dfb29437b8e3c5fb6bdcb8feaa5eedc7ee9cf6", [:mix], []}}
