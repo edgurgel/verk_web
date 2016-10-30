@@ -27,6 +27,7 @@
           <ul class="nav navbar-nav">
             <%= menu_item(@conn, page_path(@conn, :index), "Home") %>
             <%= menu_item(@conn, retries_path(@conn, :index), retries_count) %>
+            <%= menu_item(@conn, dead_path(@conn, :index), dead_count) %>
           </ul>
         </div>
       </div>
