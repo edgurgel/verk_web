@@ -6,6 +6,9 @@ defmodule VerkWeb do
     import Supervisor.Spec, warn: false
 
     children = [supervisor(VerkWeb.Endpoint, [])]
+    if Application.get_env(:verk_web, :link_verk_supervisor, false) do
+      children = [supervisor(Verk.Supervisor, []) | children]
+    end
     :ets.new(:verk_web_session, [:named_table, :public, read_concurrency: true])
     opts = [strategy: :one_for_one, name: VerkWeb.Supervisor]
     Supervisor.start_link(children, opts)
