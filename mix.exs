@@ -23,7 +23,7 @@ defmodule VerkWeb.Mixfile do
   def application do
     [mod: {VerkWeb, []},
      env: [{VerkWeb.Endpoint, [http: [port: 4000], server: false]}],
-     applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext, :verk]]
+     applications: [:phoenix, :phoenix_html, :cowboy, :logger, :gettext, :verk, :timex]]
   end
 
   defp elixirc_paths(:test), do: ["lib", "web", "test/support"]
@@ -39,7 +39,8 @@ defmodule VerkWeb.Mixfile do
      {:earmark, "~> 1.0", only: :dev},
      {:ex_doc, "~> 0.13", only: :dev},
      {:coverex, "~> 1.4", only: :test},
-     {:meck, "~> 0.8", only: :test}]
+     {:meck, "~> 0.8", only: :test},
+     {:timex, "~> 3.0.0"}]
   end
 
   defp package do

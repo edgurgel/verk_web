@@ -8,7 +8,7 @@ defmodule VerkWeb.RetriesController do
     paginator = VerkWeb.RangePaginator.new(RetrySet.count!, params["page"], params["per_page"])
 
     render conn, "index.html",
-      failed_jobs: RetrySet.range!(paginator.from, paginator.to),
+      failed_jobs: RetrySet.range_with_score!(paginator.from, paginator.to),
       has_next: paginator.has_next,
       has_prev: paginator.has_prev,
       page: paginator.page,
