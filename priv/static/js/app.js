@@ -110,7 +110,7 @@
   globals.require = require;
 })();
 "use strict";var _typeof=typeof Symbol==="function"&&typeof Symbol.iterator==="symbol"?function(obj){return typeof obj;}:function(obj){return obj&&typeof Symbol==="function"&&obj.constructor===Symbol?"symbol":typeof obj;}; /*!
- * jQuery JavaScript Library v2.2.0
+ * jQuery JavaScript Library v2.2.1
  * http://jquery.com/
  *
  * Includes Sizzle.js
@@ -120,7 +120,7 @@
  * Released under the MIT license
  * http://jquery.org/license
  *
- * Date: 2016-01-08T20:02Z
+ * Date: 2016-02-22T19:11Z
  */(function(global,factory){if((typeof module==="undefined"?"undefined":_typeof(module))==="object"&&_typeof(module.exports)==="object"){ // For CommonJS and CommonJS-like environments where a proper `window`
 // is present, execute the factory and get jQuery.
 // For environments that do not have a `window` with a `document`
@@ -134,7 +134,7 @@ module.exports=global.document?factory(global,true):function(w){if(!w.document){
 // the stack via arguments.caller.callee and Firefox dies if
 // you try to trace through "use strict" call chains. (#13335)
 //"use strict";
-var arr=[];var document=window.document;var _slice=arr.slice;var concat=arr.concat;var push=arr.push;var indexOf=arr.indexOf;var class2type={};var toString=class2type.toString;var hasOwn=class2type.hasOwnProperty;var support={};var version="2.2.0", // Define a local copy of jQuery
+var arr=[];var document=window.document;var _slice=arr.slice;var concat=arr.concat;var push=arr.push;var indexOf=arr.indexOf;var class2type={};var toString=class2type.toString;var hasOwn=class2type.hasOwnProperty;var support={};var version="2.2.1", // Define a local copy of jQuery
 jQuery=function jQuery(selector,context){ // The jQuery object is actually just the init constructor 'enhanced'
 // Need init if jQuery is called (just allow error to be thrown if not included)
 return new jQuery.fn.init(selector,context);}, // Support: Android<4.1
@@ -935,7 +935,7 @@ if(typeof selector!=="string"){ // ( types-Object, data )
 data=data||selector;selector=undefined;}for(type in types){_on(elem,type,selector,data,types[type],one);}return elem;}if(data==null&&fn==null){ // ( types, fn )
 fn=selector;data=selector=undefined;}else if(fn==null){if(typeof selector==="string"){ // ( types, selector, fn )
 fn=data;data=undefined;}else { // ( types, data, fn )
-fn=data;data=selector;selector=undefined;}}if(fn===false){fn=returnFalse;}else if(!fn){return this;}if(one===1){origFn=fn;fn=function fn(event){ // Can use an empty set, since event contains the info
+fn=data;data=selector;selector=undefined;}}if(fn===false){fn=returnFalse;}else if(!fn){return elem;}if(one===1){origFn=fn;fn=function fn(event){ // Can use an empty set, since event contains the info
 jQuery().off(event);return origFn.apply(this,arguments);}; // Use same guid so caller can remove using origFn
 fn.guid=origFn.guid||(origFn.guid=jQuery.guid++);}return elem.each(function(){jQuery.event.add(this,types,fn,data,selector);});} /*
  * Helper functions for managing events -- not part of the public interface.
@@ -1026,7 +1026,8 @@ fn=selector;selector=undefined;}if(fn===false){fn=returnFalse;}return this.each(
 // In IE/Edge using regex groups here causes severe slowdowns.
 // See https://connect.microsoft.com/IE/feedback/details/1736512/
 rnoInnerhtml=/<script|<style|<link/i, // checked="checked" or checked
-rchecked=/checked\s*(?:[^=]|=\s*.checked.)/i,rscriptTypeMasked=/^true\/(.*)/,rcleanScript=/^\s*<!(?:\[CDATA\[|--)|(?:\]\]|--)>\s*$/g;function manipulationTarget(elem,content){if(jQuery.nodeName(elem,"table")&&jQuery.nodeName(content.nodeType!==11?content:content.firstChild,"tr")){return elem.getElementsByTagName("tbody")[0]||elem;}return elem;} // Replace/restore the type attribute of script elements for safe DOM manipulation
+rchecked=/checked\s*(?:[^=]|=\s*.checked.)/i,rscriptTypeMasked=/^true\/(.*)/,rcleanScript=/^\s*<!(?:\[CDATA\[|--)|(?:\]\]|--)>\s*$/g; // Manipulating tables requires a tbody
+function manipulationTarget(elem,content){return jQuery.nodeName(elem,"table")&&jQuery.nodeName(content.nodeType!==11?content:content.firstChild,"tr")?elem.getElementsByTagName("tbody")[0]||elem.appendChild(elem.ownerDocument.createElement("tbody")):elem;} // Replace/restore the type attribute of script elements for safe DOM manipulation
 function disableScript(elem){elem.type=(elem.getAttribute("type")!==null)+"/"+elem.type;return elem;}function restoreScript(elem){var match=rscriptTypeMasked.exec(elem.type);if(match){elem.type=match[1];}else {elem.removeAttribute("type");}return elem;}function cloneCopyEvent(src,dest){var i,l,type,pdataOld,pdataCur,udataOld,udataCur,events;if(dest.nodeType!==1){return;} // 1. Copy private data: events, handlers, etc.
 if(dataPriv.hasData(src)){pdataOld=dataPriv.access(src);pdataCur=dataPriv.set(dest,pdataOld);events=pdataOld.events;if(events){delete pdataCur.handle;pdataCur.events={};for(type in events){for(i=0,l=events[type].length;i<l;i++){jQuery.event.add(dest,type,events[type][i]);}}}} // 2. Copy user data
 if(dataUser.hasData(src)){udataOld=dataUser.access(src);udataCur=jQuery.extend({},udataOld);dataUser.set(dest,udataCur);}} // Fix IE bugs, see support tests
@@ -1084,7 +1085,7 @@ doc.write();doc.close();display=actualDisplay(nodeName,doc);iframe.detach();} //
 elemdisplay[nodeName]=display;}return display;}var rmargin=/^margin/;var rnumnonpx=new RegExp("^("+pnum+")(?!px)[a-z%]+$","i");var getStyles=function getStyles(elem){ // Support: IE<=11+, Firefox<=30+ (#15098, #14150)
 // IE throws on elements created in popups
 // FF meanwhile throws on frame elements through "defaultView.getComputedStyle"
-var view=elem.ownerDocument.defaultView;if(!view.opener){view=window;}return view.getComputedStyle(elem);};var swap=function swap(elem,options,callback,args){var ret,name,old={}; // Remember the old values, and insert the new ones
+var view=elem.ownerDocument.defaultView;if(!view||!view.opener){view=window;}return view.getComputedStyle(elem);};var swap=function swap(elem,options,callback,args){var ret,name,old={}; // Remember the old values, and insert the new ones
 for(name in options){old[name]=elem.style[name];elem.style[name]=options[name];}ret=callback.apply(elem,args||[]); // Revert the old values
 for(name in options){elem.style[name]=old[name];}return ret;};var documentElement=document.documentElement;(function(){var pixelPositionVal,boxSizingReliableVal,pixelMarginRightVal,reliableMarginLeftVal,container=document.createElement("div"),div=document.createElement("div"); // Finish early in limited (non-browser) environments
 if(!div.style){return;} // Support: IE9-11+
@@ -1110,9 +1111,12 @@ if(boxSizingReliableVal==null){computeStyleTests();}return reliableMarginLeftVal
 var ret,marginDiv=div.appendChild(document.createElement("div")); // Reset CSS: box-sizing; display; margin; border; padding
 marginDiv.style.cssText=div.style.cssText= // Support: Android 2.3
 // Vendor-prefix box-sizing
-"-webkit-box-sizing:content-box;box-sizing:content-box;"+"display:block;margin:0;border:0;padding:0";marginDiv.style.marginRight=marginDiv.style.width="0";div.style.width="1px";documentElement.appendChild(container);ret=!parseFloat(window.getComputedStyle(marginDiv).marginRight);documentElement.removeChild(container);div.removeChild(marginDiv);return ret;}});})();function curCSS(elem,name,computed){var width,minWidth,maxWidth,ret,style=elem.style;computed=computed||getStyles(elem); // Support: IE9
+"-webkit-box-sizing:content-box;box-sizing:content-box;"+"display:block;margin:0;border:0;padding:0";marginDiv.style.marginRight=marginDiv.style.width="0";div.style.width="1px";documentElement.appendChild(container);ret=!parseFloat(window.getComputedStyle(marginDiv).marginRight);documentElement.removeChild(container);div.removeChild(marginDiv);return ret;}});})();function curCSS(elem,name,computed){var width,minWidth,maxWidth,ret,style=elem.style;computed=computed||getStyles(elem);ret=computed?computed.getPropertyValue(name)||computed[name]:undefined; // Support: Opera 12.1x only
+// Fall back to style even without computed
+// computed is undefined for elems on document fragments
+if((ret===""||ret===undefined)&&!jQuery.contains(elem.ownerDocument,elem)){ret=jQuery.style(elem,name);} // Support: IE9
 // getPropertyValue is only needed for .css('filter') (#12537)
-if(computed){ret=computed.getPropertyValue(name)||computed[name];if(ret===""&&!jQuery.contains(elem.ownerDocument,elem)){ret=jQuery.style(elem,name);} // A tribute to the "awesome hack by Dean Edwards"
+if(computed){ // A tribute to the "awesome hack by Dean Edwards"
 // Android Browser returns percentage for some values,
 // but width seems to be reliably pixels.
 // This is against the CSSOM draft spec:
@@ -1339,7 +1343,7 @@ simulate:function simulate(type,elem,event){var e=jQuery.extend(new jQuery.Event
 // But now, this "simulate" function is used only for events
 // for which stopPropagation() is noop, so there is no need for that anymore.
 //
-// For the compat branch though, guard for "click" and "submit"
+// For the 1.x branch though, guard for "click" and "submit"
 // events is still used, but was moved to jQuery.event.stopPropagation function
 // because `originalEvent` should point to the original event for the constancy
 // with other events and for more focused logic
@@ -1648,8 +1652,7 @@ if(jQuery.css(elem,"position")==="fixed"){ // Assume getBoundingClientRect is th
 offset=elem.getBoundingClientRect();}else { // Get *real* offsetParent
 offsetParent=this.offsetParent(); // Get correct offsets
 offset=this.offset();if(!jQuery.nodeName(offsetParent[0],"html")){parentOffset=offsetParent.offset();} // Add offsetParent borders
-// Subtract offsetParent scroll positions
-parentOffset.top+=jQuery.css(offsetParent[0],"borderTopWidth",true)-offsetParent.scrollTop();parentOffset.left+=jQuery.css(offsetParent[0],"borderLeftWidth",true)-offsetParent.scrollLeft();} // Subtract parent offsets and element margins
+parentOffset.top+=jQuery.css(offsetParent[0],"borderTopWidth",true);parentOffset.left+=jQuery.css(offsetParent[0],"borderLeftWidth",true);} // Subtract parent offsets and element margins
 return {top:offset.top-parentOffset.top-jQuery.css(elem,"marginTop",true),left:offset.left-parentOffset.left-jQuery.css(elem,"marginLeft",true)};}, // This method will return documentElement in the following cases:
 // 1) For the element inside the iframe without offsetParent, this method will return
 //    documentElement of the parent window
@@ -3860,24 +3863,38 @@ if (typeof jQuery === 'undefined') {
 require.register("deps/phoenix_html/web/static/js/phoenix_html", function(exports, require, module) {
 'use strict';
 
-// Although ^=parent is not technically correct,
-// we need to use it in order to get IE8 support.
-var elements = document.querySelectorAll('[data-submit^=parent]');
-var len = elements.length;
+function isLinkToSubmitParent(element) {
+  var isLinkTag = element.tagName === 'A';
+  var shouldSubmitParent = element.getAttribute('data-submit') === 'parent';
 
-for (var i = 0; i < len; ++i) {
-  elements[i].addEventListener('click', function (event) {
-    var message = this.getAttribute("data-confirm");
-    if (message === null || confirm(message)) {
-      this.parentNode.submit();
-    };
+  return isLinkTag && shouldSubmitParent;
+}
+
+function didHandleSubmitLinkClick(element) {
+  while (element && element.getAttribute) {
+    if (isLinkToSubmitParent(element)) {
+      var message = element.getAttribute('data-confirm');
+      if (message === null || confirm(message)) {
+        element.parentNode.submit();
+      };
+      return true;
+    } else {
+      element = element.parentNode;
+    }
+  }
+  return false;
+}
+
+// for links with HTTP methods other than GET
+window.addEventListener('click', function (event) {
+  if (event.target && didHandleSubmitLinkClick(event.target)) {
     event.preventDefault();
     return false;
-  }, false);
-}
+  }
+}, false);
 });
 
-;require.register("web/static/js/app", function(exports, require, module) {
+require.register("web/static/js/app", function(exports, require, module) {
 "use strict";
 
 require("deps/phoenix_html/web/static/js/phoenix_html");
