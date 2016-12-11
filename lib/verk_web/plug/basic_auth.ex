@@ -13,8 +13,8 @@ defmodule VerkWeb.Plug.BasicAuth do
   """
 
   def init(options) do
-    username = Keyword.fetch!(options, :username)
-    password = Keyword.fetch!(options, :password)
+    username = Keyword.fetch!(options, :username) |> to_value
+    password = Keyword.fetch!(options, :password) |> to_value
     [username: username, password: password]
   end
 
@@ -42,4 +42,7 @@ defmodule VerkWeb.Plug.BasicAuth do
     |> Plug.Conn.send_resp(401, "401 Unauthorized")
     |> Plug.Conn.halt
   end
+
+  defp to_value({:system, env_var}), do: System.get_env(env_var)
+  defp to_value(value), do: value
 end
