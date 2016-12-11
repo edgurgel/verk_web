@@ -33,5 +33,10 @@ defmodule VerkWeb.Endpoint do
     key: "verk_web_sid",
     table: :verk_web_session
 
+  auth_options = Application.get_env(:verk_web, :authorization)
+  if auth_options do
+    plug VerkWeb.Plug.BasicAuth, auth_options
+  end
+
   plug VerkWeb.Router
 end
