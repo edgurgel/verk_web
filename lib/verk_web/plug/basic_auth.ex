@@ -13,8 +13,9 @@ defmodule VerkWeb.Plug.BasicAuth do
   """
 
   def init(options) do
-    username = Keyword.fetch!(options, :username) |> to_value
-    password = Keyword.fetch!(options, :password) |> to_value
+    username = Keyword.fetch!(options, :username)
+    password = Keyword.fetch!(options, :password)
+
     [username: username, password: password]
   end
 
@@ -30,7 +31,7 @@ defmodule VerkWeb.Plug.BasicAuth do
   end
 
   defp valid_credentials?(["Basic " <> encoded_string], options) do
-    Base.decode64!(encoded_string) == "#{options[:username]}:#{options[:password]}"
+    Base.decode64!(encoded_string) == "#{to_value options[:username]}:#{to_value options[:password]}"
   end
 
   defp valid_credentials?(_credentials, _options) do
