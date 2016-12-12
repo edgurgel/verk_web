@@ -1,4 +1,6 @@
-<h2>Dead jobs which have exceeded the allotted number of retries</h2>
+<div class="page-header clearfix">
+  <h2>Dead jobs</h2>
+</div>
 
 <%= if @dead_jobs |> Enum.empty? do %>
   <p>No dead jobs at the moment.</p>
