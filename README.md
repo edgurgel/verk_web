@@ -64,6 +64,27 @@ Now VerkWeb would run on port 4000,
 ![](https://cloud.githubusercontent.com/assets/30873/14195722/1a1d7b54-f819-11e5-90fd-c1ff8b7f4613.png)
 
 
+## Adding authentication
+
+Add to your config:
+
+```elixir
+# in config.exs:
+config :verk_web, :authorization,
+  username: "admin",
+  password: "simple_password",
+  realm: "Admin Area"
+```
+
+or (using environment variables)
+
+```elixir
+config :verk_web, :authorization,
+  username: {:system, "BASIC_AUTH_USERNAME"},
+  password: {:system, "BASIC_AUTH_PASSWORD"},
+  realm:    {:system, "BASIC_AUTH_REALM"}
+```
+
 ## Development
 
 To start Verk Web app:

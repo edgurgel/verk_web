@@ -36,6 +36,7 @@ defmodule VerkWeb.Mixfile do
      {:gettext, "~> 0.9"},
      {:verk, "~> 0.13"},
      {:cowboy, "~> 1.0"},
+     {:basic_auth, "~> 2.0"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
      {:earmark, "~> 1.0", only: :dev},
      {:ex_doc, "~> 0.13", only: :dev},

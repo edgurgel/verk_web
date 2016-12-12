@@ -35,7 +35,7 @@ defmodule VerkWeb.Endpoint do
 
   auth_options = Application.get_env(:verk_web, :authorization)
   if auth_options do
-    plug VerkWeb.Plug.BasicAuth, auth_options
+    plug BasicAuth, use_config: {:verk_web, :authorization}
   end
 
   plug VerkWeb.Router
