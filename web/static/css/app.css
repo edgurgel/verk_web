@@ -115,3 +115,9 @@ body {
 .swatch-idle { background: #ffc107; }
 .swatch-running { background: #2196f3; }
 
+
+/* Queue Search */
+
+#queue-search {
+  margin: 0;
+}

@@ -3,6 +3,14 @@
 <% else %>
   <div class="page-header clearfix">
     <h2>Queues</h2>
+
+    <form id="queue-search" class="navbar-form navbar-left" role="search">
+      <div class="form-group">
+        <input type="text" name="search" class="form-control input-sm" placeholder="Search">
+      </div>
+      <button type="submit" class="btn btn-default btn-sm">Go</button>
+    </form>
+
     <ul class="swatches clearfix">
       <li><span class="swatch swatch-running"></span>running</li>
       <li><span class="swatch swatch-idle"></span>idle</li>
