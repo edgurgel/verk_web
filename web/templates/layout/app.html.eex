@@ -26,6 +26,7 @@
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav">
             <%= menu_item(@conn, page_path(@conn, :index), "Home") %>
+            <%= menu_item(@conn, queues_path(@conn, :index), "Queues") %>
             <%= menu_item(@conn, retries_path(@conn, :index), retries_count) %>
             <%= menu_item(@conn, dead_path(@conn, :index), dead_count) %>
           </ul>

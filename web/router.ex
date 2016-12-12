@@ -17,6 +17,7 @@ defmodule VerkWeb.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    get "/queues", QueuesController, :index
     get "/queues/:queue", QueuesController, :show
     get "/queues/:queue/busy", QueuesController, :busy
     get "/queues/:queue/jobs/:job_id", JobController, :show
