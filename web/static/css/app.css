@@ -139,3 +139,36 @@ body {
 #queue-search {
   margin: 0;
 }
+
+
+/* Summary Stats */
+
+.summary-stats {
+}
+
+.summary-stats .col-md-3 {
+  padding: 20px;
+  border-left: 1px solid #ddd;
+}
+
+.summary-stats .col-md-3:first-child {
+  border-left-color: transparent;
+}
+
+.summary-stats .count {
+  font-size: 32px;
+  color: #2196f3;
+}
+
+.summary-stats .desc {
+  color: #777;
+}
+
+
+/* Graph */
+
+.graph {
+  margin: 32px 0;
+  height: 300px;
+  border: 1px solid #ddd;
+}

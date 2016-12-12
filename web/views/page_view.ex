@@ -7,4 +7,20 @@ defmodule VerkWeb.PageView do
       |> Map.merge(Verk.Stats.queue_total(queue_stats.queue))
     end
   end
+
+  def total_processed do
+    Verk.Stats.total.processed
+  end
+
+  def total_failed do
+    Verk.Stats.total.failed
+  end
+
+  def retries_count do
+    Verk.RetrySet.count!
+  end
+
+  def dead_count do
+    Verk.DeadSet.count!
+  end
 end

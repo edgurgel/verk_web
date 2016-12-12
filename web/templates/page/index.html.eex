@@ -1,1 +1,12 @@
-<h2>Dashboard</h2>
+<div class="graph">
+
+</div>
+
+<div class="summary-stats">
+  <div class="row">
+    <div class="col-md-3 text-center"><div class="count"><%= total_processed %></div><div class="desc">Total Processed</div></div>
+    <div class="col-md-3 text-center"><div class="count"><%= total_failed %></div><div class="desc">Total Failed</div></div>
+    <div class="col-md-3 text-center"><div class="count"><%= retries_count %></div><div class="desc">Retries</div></div>
+    <div class="col-md-3 text-center"><div class="count"><%= dead_count %></div><div class="desc">Dead</div></div>
+  </div>
+</div>
