@@ -16,7 +16,7 @@
       <li><span class="swatch swatch-idle"></span>idle</li>
     </ul>
   </div>
-  <table class="table">
+  <table class="table table-blocks">
     <thead>
       <tr>
         <th>Queue</th>

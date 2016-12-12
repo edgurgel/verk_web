@@ -8,7 +8,7 @@
   <div>
     <%= form_for @conn, retries_path(@conn, :destroy), [as: :delete_job, method: "DELETE"], fn _ -> %>
     <input name="jobs_to_remove[]" type="hidden" value="" />
-    <table id="retries-table" class="table">
+    <table id="retries-table" class="table table-blocks">
       <thead>
         <tr>
           <th></th>

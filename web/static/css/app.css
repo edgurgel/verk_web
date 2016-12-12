@@ -57,36 +57,36 @@ body {
 
 /* Tables */
 
-.table>tbody>tr>td,
-.table>tbody>tr>th,
-.table>tfoot>tr>td,
-.table>tfoot>tr>th,
-.table>thead>tr>td, 
-.table>thead>tr>th {
+.table-blocks>tbody>tr>td,
+.table-blocks>tbody>tr>th,
+.table-blocks>tfoot>tr>td,
+.table-blocks>tfoot>tr>th,
+.table-blocks>thead>tr>td, 
+.table-blocks>thead>tr>th {
   border-bottom: 10px solid #f7f7f7;
   background: #eee;
   padding: 20px;
   vertical-align: middle;
 }
 
-.table>tbody>tr>th,
-.table>tfoot>tr>th,
-.table>thead>tr>th {
+.table-blocks>tbody>tr>th,
+.table-blocks>tfoot>tr>th,
+.table-blocks>thead>tr>th {
   background: #f7f7f7;
   padding: 5px 20px;
   color: #666;
   font-weight: 500;
 }
 
-.table>tbody>tr.queue-row>td:first-child {
+.table-blocks>tbody>tr.queue-row>td:first-child {
   border-left: 5px solid #2196f3;
 }
 
-.table>tbody>tr.queue-row.is-idle>td:first-child {
+.table-blocks>tbody>tr.queue-row.is-idle>td:first-child {
   border-left-color: #ffc107;
 }
 
-.table>tbody>tr>td.lifetime {
+.table-blocks>tbody>tr>td.lifetime {
   background: #ddd;
 }
 
@@ -95,9 +95,18 @@ body {
   text-align: right;
 }
 
-.table code {
+.table-blocks code {
   color: inherit;
   background: #eee;
+}
+
+.table>tbody>tr>td,
+.table>tbody>tr>th, 
+.table>tfoot>tr>td,
+.table>tfoot>tr>th,
+.table>thead>tr>td,
+.table>thead>tr>th {
+  border-top: none;
 }
 
 /* Swatches */
