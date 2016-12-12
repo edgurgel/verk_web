@@ -90,6 +90,15 @@ body {
   background: #ddd;
 }
 
+#retries-table>tbody>tr>td:first-child {
+  background: none;
+  text-align: right;
+}
+
+.table code {
+  color: inherit;
+  background: #eee;
+}
 
 /* Swatches */
 
