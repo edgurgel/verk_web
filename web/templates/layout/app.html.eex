@@ -40,11 +40,5 @@
 
     <script> MOUNT_PATH = "<%= @conn.assigns[:mount_path] %>"</script>
     <script src="<%= mount_static_path(@conn, "/js/app.js") %>"></script>
-    <footer class="footer navbar-default">
-      <div class="container">
-        <h4>All-time stats</h4>
-        <p class="text-muted"> <%= total_stats %> </p>
-      </div>
-    </footer>
   </body>
 </html>
