@@ -23,7 +23,7 @@ defmodule VerkWeb.RoomChannel do
   end
 
   def handle_info(:stats, socket) do
-    push socket, "job:stats", TrackingJobsHandler.current_stats
+    push socket, "job:stats", VerkWeb.TrackingJobsHandler.current_stats
     {:noreply, socket}
   end
 

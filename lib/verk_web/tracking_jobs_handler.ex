@@ -1,4 +1,4 @@
-defmodule TrackingJobsHandler do
+defmodule VerkWeb.TrackingJobsHandler do
   use GenEvent
   @broadcast_interval 1_000
 
@@ -8,7 +8,7 @@ defmodule TrackingJobsHandler do
   end
 
   def current_stats do
-    GenEvent.call(Verk.EventManager, TrackingJobsHandler, :current_stats)
+    GenEvent.call(Verk.EventManager, VerkWeb.TrackingJobsHandler, :current_stats)
   end
 
   def handle_call(:current_stats, state) do

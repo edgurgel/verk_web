@@ -6,7 +6,7 @@ defmodule VerkWeb do
     import Supervisor.Spec, warn: false
 
     children = [supervisor(VerkWeb.Endpoint, []),
-                worker(Watcher, [Verk.EventManager, TrackingJobsHandler, []])]
+                worker(Watcher, [Verk.EventManager, VerkWeb.TrackingJobsHandler, []])]
     children = if Application.get_env(:verk_web, :link_verk_supervisor, false) do
       [supervisor(Verk.Supervisor, []) | children]
     else
