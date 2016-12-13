@@ -1,6 +1,5 @@
 defmodule VerkWeb.RoomChannel do
   use Phoenix.Channel
-  require Logger
 
   @doc """
   Authorize socket to subscribe and broadcast events on this channel & topic
@@ -24,12 +23,11 @@ defmodule VerkWeb.RoomChannel do
   end
 
   def handle_info(:stats, socket) do
-    push socket, "job:stats", TrackingJobsHandler.current_stats |> IO.inspect
+    push socket, "job:stats", TrackingJobsHandler.current_stats
     {:noreply, socket}
   end
 
-  def terminate(reason, _socket) do
-    Logger.debug "> leave #{inspect reason}"
+  def terminate(_reason, _socket) do
     :ok
   end
 end
