@@ -5,7 +5,7 @@ defmodule VerkWeb.Plug.Mount do
 
   def call(conn, path),        do: call(conn, path, matches?(conn, path))
   def call(conn, path, true),  do: process(conn, path)
-  def call(conn, path, false), do: conn
+  def call(conn, _path, false), do: conn
 
   def process(conn, path) do
     conn

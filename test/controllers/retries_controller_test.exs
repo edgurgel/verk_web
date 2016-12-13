@@ -16,7 +16,7 @@ defmodule VerkWeb.RetriesControllerTest do
     assert validate RetrySet
   end
 
-  test "DELETE / passing no jobs deletes all jobs" do
+  test "DELETE / passing no jobs deletes all jobs", %{conn: conn} do
     expect(RetrySet, :clear!, 0, :ok)
     delete conn, "/retries"
     assert validate RetrySet

@@ -12,7 +12,7 @@ defmodule VerkWeb.DeadControllerTest do
     delete conn, "/dead", jobs_to_delete: [fake_job_json]
   end
 
-  test "DELETE / passing no jobs deletes all jobs" do
+  test "DELETE / passing no jobs deletes all jobs", %{conn: conn} do
     :meck.expect(Verk.DeadSet, :clear, 0, :ok)
     delete conn, "/dead"
   end
