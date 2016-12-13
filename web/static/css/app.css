@@ -144,19 +144,19 @@ body {
 /* Summary Stats */
 
 .summary-stats {
+
 }
 
-.summary-stats .col-md-3 {
+.summary-stats .col-md-2 {
   padding: 20px;
-  border-left: 1px solid #ddd;
 }
 
-.summary-stats .col-md-3:first-child {
+.summary-stats .col-md-2:first-child {
   border-left-color: transparent;
 }
 
 .summary-stats .count {
-  font-size: 32px;
+  font-size: 24px;
   color: #2196f3;
 }
 
@@ -164,6 +164,15 @@ body {
   color: #777;
 }
 
+.summary-stats .row:last-child {
+  margin-top: 20px;
+  border-top: 1px solid #ddd;
+  padding-top: 46px;
+}
+
+.summary-stats .row:last-child .count {
+  font-size: 18px;
+}
 
 /* Graph */
 

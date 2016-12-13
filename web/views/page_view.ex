@@ -31,9 +31,8 @@ defmodule VerkWeb.PageView do
     days     = to_days(duration, truncate: true)
     hours    = to_hours(duration, truncate: true)
     minutes  = to_minutes(duration, truncate: true)
-    seconds  = to_seconds(duration, truncate: true)
 
-    "#{days} days, #{hours} hours, #{minutes} minutes and #{seconds} seconds"
+    "#{days} days, #{hours} hours, #{minutes} minutes"
   end
 
   def process_count, do: :erlang.system_info(:process_count)
