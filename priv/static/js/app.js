@@ -15217,11 +15217,7 @@ var App = function () {
   _createClass(App, null, [{
     key: "init",
     value: function init() {
-      var socket = new _phoenix.Socket("/socket", {
-        logger: function logger(kind, msg, data) {
-          console.log(kind + ": " + msg, data);
-        }
-      });
+      var socket = new _phoenix.Socket("/socket");
 
       var graph = new _rickshaw2.default.Graph({
         element: document.querySelector("#graph"),
@@ -15251,17 +15247,7 @@ var App = function () {
       socket.connect();
 
       var chan = socket.channel("rooms:jobs", {});
-      chan.join().receive("ignore", function () {
-        return console.log("auth error");
-      }).receive("ok", function () {
-        return console.log("join ok");
-      });
-      chan.onError(function (e) {
-        return console.log("something went wrong", e);
-      });
-      chan.onClose(function (e) {
-        return console.log("channel closed", e);
-      });
+      chan.join();
 
       chan.on("job:stats", function (msg) {
         graph.series.addData(msg);
@@ -15281,8 +15267,8 @@ exports.default = App;
 });
 
 ;require.alias("phoenix_html/priv/static/phoenix_html.js", "phoenix_html");
-require.alias("phoenix/priv/static/phoenix.js", "phoenix");
 require.alias("rickshaw/rickshaw.js", "rickshaw");
+require.alias("phoenix/priv/static/phoenix.js", "phoenix");
 require.alias("d3/d3.js", "d3");require.register("___globals___", function(exports, require, module) {
   
 });})();require('___globals___');
