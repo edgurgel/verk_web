@@ -1,5 +1,4 @@
-<div class="graph">
-
+<div id="graph" class="graph">
 </div>
 
 <div class="summary-stats">
