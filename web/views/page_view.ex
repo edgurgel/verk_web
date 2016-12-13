@@ -23,4 +23,19 @@ defmodule VerkWeb.PageView do
   def dead_count do
     Verk.DeadSet.count!
   end
+
+  def uptime do
+    import Timex.Duration
+    {time, _} = :erlang.statistics(:wall_clock)
+    duration = from_milliseconds(time)
+    days     = to_days(duration, truncate: true)
+    hours    = to_hours(duration, truncate: true)
+    minutes  = to_minutes(duration, truncate: true)
+    seconds  = to_seconds(duration, truncate: true)
+
+    "#{days} days, #{hours} hours, #{minutes} minutes and #{seconds} seconds"
+  end
+
+  def process_count, do: :erlang.system_info(:process_count)
+  def process_limit, do: :erlang.system_info(:process_limit)
 end
