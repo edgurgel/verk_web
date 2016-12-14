@@ -1,4 +1,6 @@
-<h2>Failed jobs waiting to be retried</h2>
+<div class="page-header clearfix">
+  <h2>Retries</h2>
+</div>
 
 <%= if @failed_jobs |> Enum.empty? do %>
   <p>No jobs waiting to be retried at the moment.</p>
@@ -6,7 +8,7 @@
   <div>
     <%= form_for @conn, retries_path(@conn, :destroy), [as: :delete_job, method: "DELETE"], fn _ -> %>
     <input name="jobs_to_remove[]" type="hidden" value="" />
-    <table class="table">
+    <table id="retries-table" class="table table-blocks">
       <thead>
         <tr>
           <th></th>
@@ -22,16 +24,16 @@
       <%= for job <- jobs(@failed_jobs) do %>
         <tr>
           <td><input name="jobs_to_remove[]" type="checkbox" value="<%= job.original_json %>" id="job_<%= job.jid %>" /></td>
-          <td><%= job.jid %></td>
+          <td><code><%= job.jid %></code></td>
           <td><%= job.retry_count %></td>
           <td><%= job.score %></td>
-          <td><%= job.class %></td>
+          <td><code><%= job.class %></code></td>
           <td>
-            <%= if String.length(job.args) > 128 do
+            <code><%= if String.length(job.args) > 128 do
                   String.slice(job.args, 0, 128) <> "..."
                 else
                   job.args
-                end %>
+                end %></code>
           </td>
           <td>
             <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#job-<%= job.jid %>-modal">

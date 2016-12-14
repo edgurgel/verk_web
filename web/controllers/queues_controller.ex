@@ -1,5 +1,11 @@
 defmodule VerkWeb.QueuesController do
+  require Verk.QueueStats
   use VerkWeb.Web, :controller
+
+  def index(conn, params) do
+    render conn, "index.html", queue_stats: Verk.QueueStats.all(params["search"] || ""),
+                               search: params["search"]
+  end
 
   def show(conn, %{ "queue" => queue }) do
     params = conn.params

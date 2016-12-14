@@ -1,6 +1,8 @@
 defmodule VerkWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :verk_web
 
+  socket "/socket", VerkWeb.UserSocket
+
   # Serve at "/" the static files from "priv/static" directory.
   #
   # You should set gzip to true if you are running phoenix.digest

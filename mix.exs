@@ -30,11 +30,11 @@ defmodule VerkWeb.Mixfile do
   defp elixirc_paths(_),     do: ["lib", "web"]
 
   defp deps do
-    [{:phoenix, "~> 1.2.0"},
-     {:phoenix_html, "~> 2.6"},
+    [{:phoenix, "~> 1.2.1"},
      {:phoenix_pubsub, "~> 1.0"},
+     {:phoenix_html, "~> 2.6"},
      {:gettext, "~> 0.9"},
-     {:verk, "~> 0.13"},
+     {:verk, "~> 0.13.5"},
      {:cowboy, "~> 1.0"},
      {:basic_auth, "~> 2.0"},
      {:phoenix_live_reload, "~> 1.0", only: :dev},
