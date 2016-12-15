@@ -50,7 +50,8 @@ That should be it! :)
 # in config.exs:
 config :verk_web, VerkWeb.Endpoint,
   http: [port: 4000],
-  server: true #-> this is to tell VerkWeb to start a standalone application!
+  server: true, #-> this is to tell VerkWeb to start a standalone application!
+  pubsub: [name: VerkWeb.PubSub, adapter: Phoenix.PubSub.PG2] # The pubsub adapter to use (default)
 ```
 Now VerkWeb would run on port 4000,
 

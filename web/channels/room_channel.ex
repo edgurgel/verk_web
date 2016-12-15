@@ -1,20 +1,10 @@
 defmodule VerkWeb.RoomChannel do
   use Phoenix.Channel
+  alias VerkWeb.TrackingJobsHandler
 
-  @doc """
-  Authorize socket to subscribe and broadcast events on this channel & topic
-
-  Possible Return Values
-
-  `{:ok, socket}` to authorize subscription for channel for requested topic
-
-  `:ignore` to deny subscription/broadcast on this channel
-  for the requested topic
-  """
+  @doc false
   def join("rooms:jobs", _, socket) do
-    Process.flag(:trap_exit, true)
-    send self, :stats
-
+    :ok = GenEvent.add_mon_handler(Verk.EventManager, {TrackingJobsHandler, self}, self)
     {:ok, socket}
   end
 
@@ -22,12 +12,13 @@ defmodule VerkWeb.RoomChannel do
     {:error, %{reason: "unauthorized"}}
   end
 
-  def handle_info(:stats, socket) do
-    push socket, "job:stats", VerkWeb.TrackingJobsHandler.current_stats
+  def handle_info({:stats, stats}, socket) do
+    push socket, "job:stats", stats
     {:noreply, socket}
   end
 
   def terminate(_reason, _socket) do
+    GenEvent.remove_handler(Verk.EventManager, {TrackingJobsHandler, self}, self)
     :ok
   end
 end

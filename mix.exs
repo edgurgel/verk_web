@@ -20,9 +20,12 @@ defmodule VerkWeb.Mixfile do
      deps: deps]
   end
 
+  @default_config [http: [port: 4000], server: false,
+                   pubsub: [name: VerkWeb.PubSub, adapter: Phoenix.PubSub.PG2]]
+
   def application do
     [mod: {VerkWeb, []},
-     env: [{VerkWeb.Endpoint, [http: [port: 4000], server: false]}],
+     env: [{VerkWeb.Endpoint, @default_config}],
      applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext, :verk, :timex]]
   end
 
