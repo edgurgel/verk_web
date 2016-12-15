@@ -25,14 +25,8 @@ defmodule VerkWeb.PageView do
   end
 
   def uptime do
-    import Timex.Duration
     {time, _} = :erlang.statistics(:wall_clock)
-    duration = from_milliseconds(time)
-    days     = to_days(duration, truncate: true)
-    hours    = to_hours(duration, truncate: true)
-    minutes  = to_minutes(duration, truncate: true)
-
-    "#{days} days, #{hours} hours, #{minutes} minutes"
+    Timex.Duration.from_milliseconds(time) |> Timex.format_duration(:humanized)
   end
 
   def process_count, do: :erlang.system_info(:process_count)
