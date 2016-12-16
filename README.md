@@ -55,7 +55,21 @@ config :verk_web, VerkWeb.Endpoint,
 ```
 Now VerkWeb would run on port 4000,
 
+## Allowing WebSocket connections
 
+VerkWeb's default host configuration is `localhost`. While this works in development, in order to allow WebSocket connections (which are required for the auto-updating overview graph) you need to update the host used in [`Phoenix.Endpoint.url`](https://hexdocs.pm/phoenix/Phoenix.Endpoint.html) to the host from which you are attempting to connect from. If this is not set correctly you can expect the following error message in your browser console logs:
+
+```
+WebSocket connection to 'ws://<YOUR_HOST>/socket/websocket?vsn=1.0.0' failed: Error during WebSocket handshake: Unexpected response code: 403
+```
+
+To resolve this update your configuration to the actual host for the environment by adding the following configuration:
+
+```elixir
+# in config.exs:
+config :verk_web, VerkWeb.Endpoint,
+  url: [host: "<YOUR_HOST>"]
+```
 
 ## What it looks like
 
