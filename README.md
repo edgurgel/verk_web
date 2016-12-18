@@ -6,6 +6,7 @@
 
 Web interface for [Verk](https://github.com/edgurgel/verk)
 
+![Dashboard](http://i.imgur.com/LsDKIVT.png)
 
 ## Installation
 
@@ -73,11 +74,8 @@ config :verk_web, VerkWeb.Endpoint,
 
 ## What it looks like
 
-![](http://i.imgur.com/AclG57m.png)
-![](http://i.imgur.com/oC9Ven3.png)
-![](http://i.imgur.com/pktr4Zv.png)
-![](https://cloud.githubusercontent.com/assets/30873/14195722/1a1d7b54-f819-11e5-90fd-c1ff8b7f4613.png)
-
+![Queues](http://i.imgur.com/emoJ3ix.png)
+![Retries](http://i.imgur.com/lAALwx4.png)
 
 ## Adding authentication
 
