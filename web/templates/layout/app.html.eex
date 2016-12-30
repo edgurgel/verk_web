@@ -28,6 +28,7 @@
             <%= menu_item(@conn, page_path(@conn, :index), "Dashboard") %>
             <%= menu_item(@conn, queues_path(@conn, :index), "Queues") %>
             <%= menu_item(@conn, retries_path(@conn, :index), "Retries") %>
+            <%= menu_item(@conn, scheduled_path(@conn, :index), "Scheduled") %>
             <%= menu_item(@conn, dead_path(@conn, :index), "Dead") %>
           </ul>
         </div>
