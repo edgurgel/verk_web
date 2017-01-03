@@ -8,6 +8,12 @@
       <div class="modal-body">
         <table class="table">
           <tbody>
+          <%= if @perform_at do %>
+            <tr>
+              <th>Perform at</th>
+              <td><%= @perform_at %></td>
+            </tr>
+          <% end %>
           <tr>
             <th>Enqueued at</th>
             <td><%= enqueued_at(@job.enqueued_at) %></td>
@@ -44,8 +50,10 @@
         </table>
       </div>
       <div class="modal-footer">
-        <%= link to: job_path(@conn, :show, @job.queue, @job.jid) do %>
-          <button type="button" class="btn btn-info">Inspect</button>
+        <%= unless @perform_at do %>
+          <%= link to: job_path(@conn, :show, @job.queue, @job.jid) do %>
+            <button type="button" class="btn btn-info">Inspect</button>
+          <%= end %>
         <%= end %>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
