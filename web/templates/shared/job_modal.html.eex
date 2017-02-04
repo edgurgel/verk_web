@@ -8,10 +8,10 @@
       <div class="modal-body">
         <table class="table">
           <tbody>
-          <%= if @perform_at do %>
+          <%= if assigns[:perform_at] do %>
             <tr>
               <th>Perform at</th>
-              <td><%= @perform_at %></td>
+              <td><%= assigns[:perform_at] %></td>
             </tr>
           <% end %>
           <tr>
@@ -50,7 +50,7 @@
         </table>
       </div>
       <div class="modal-footer">
-        <%= unless @perform_at do %>
+        <%= unless assigns[:perform_at] do %>
           <%= link to: job_path(@conn, :show, @job.queue, @job.jid) do %>
             <button type="button" class="btn btn-info">Inspect</button>
           <%= end %>
