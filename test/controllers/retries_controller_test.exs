@@ -5,7 +5,7 @@ defmodule VerkWeb.RetriesControllerTest do
 
   setup do
     new RetrySet
-    on_exit fn -> unload end
+    on_exit fn -> unload() end
     :ok
   end
 

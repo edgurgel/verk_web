@@ -3,7 +3,7 @@ defmodule VerkWeb.TrackingJobsHandler do
   @broadcast_interval 1_000
 
   def init(pid) do
-    Process.send_after(self, :broadcast_stats, @broadcast_interval)
+    Process.send_after(self(), :broadcast_stats, @broadcast_interval)
     {:ok, {pid, %{finished: 0, failed: 0}}}
   end
 
@@ -19,7 +19,7 @@ defmodule VerkWeb.TrackingJobsHandler do
 
   def handle_info(:broadcast_stats, {pid, stats}) do
     send pid, {:stats, stats}
-    Process.send_after(self, :broadcast_stats, @broadcast_interval)
+    Process.send_after(self(), :broadcast_stats, @broadcast_interval)
     {:ok, {pid, %{finished: 0, failed: 0}}}
   end
   def handle_info(_, state) do
