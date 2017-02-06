@@ -4,45 +4,59 @@
   <p>No scheduled jobs.</p>
 <% else %>
   <div>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>When</th>
-          <th>Queue</th>
-          <th>Id</th>
-          <th>Class/Worker</th>
-          <th>Arguments</th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-      <%= for job <- scheduled_jobs(@scheduled_jobs) do %>
-        <tr>
-          <td><%= perform_at(job.perform_at) %></td>
-          <td><%= job.queue %></td>
-          <td><%= job.jid %></td>
-          <td><%= job.class %></td>
-          <td><%= job.args %></td>
-          <td>
-            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#job-<%= job.jid %>-modal">
-              Details
-            </button>
+    <%= form_for @conn, scheduled_path(@conn, :destroy), [as: :delete_job, method: "DELETE"], fn _ -> %>
+      <input name="jobs_to_remove[]" type="hidden" value="" />
+      <table class="table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>When</th>
+            <th>Queue</th>
+            <th>Id</th>
+            <th>Class/Worker</th>
+            <th>Arguments</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+        <%= for job <- scheduled_jobs(@scheduled_jobs) do %>
+          <tr>
+            <td><input name="jobs_to_remove[]" type="checkbox" value="<%= job.job.original_json %>" id="job_<%= job.jid %>" /></td>
+            <td><%= perform_at(job.perform_at) %></td>
+            <td><%= job.queue %></td>
+            <td><%= job.jid %></td>
+            <td><%= job.class %></td>
+            <td><%= job.args %></td>
+            <td>
+              <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#job-<%= job.jid %>-modal">
+                Details
+              </button>
 
-            <%= render VerkWeb.SharedView, "job_modal.html", job: job.job, perform_at: job.perform_at, conn: @conn %>
-          </td>
-        </tr>
-      <% end %>
-      </tbody>
-    </table>
+              <%= render VerkWeb.SharedView, "job_modal.html", job: job.job, perform_at: job.perform_at, conn: @conn %>
+            </td>
+          </tr>
+        <% end %>
+        </tbody>
+      </table>
 
-    <div>
-      <%= if @has_prev do %>
-        <span><%= link "Previous", to: scheduled_path(@conn, :index, page: @page - 1, per_page: @per_page), class: "btn btn-default" %></span>
-      <% end %>
+      <div class="row">
+        <div class="col-md-4">
+          <%= submit "Delete selected", class: "btn btn-danger btn-sm" %>
+        </div>
 
-      <%= if @has_next do %>
-        <span><%= link "Next", to: scheduled_path(@conn, :index, page: @page + 1, per_page: @per_page), class: "btn btn-default" %></span>
-      <% end %>
-    </div>
+        <div class="col-md-8 text-right">
+          <%= if @has_prev do %>
+            <span><%= link "Previous", to: scheduled_path(@conn, :index, page: @page - 1, per_page: @per_page), class: "btn btn-default" %></span>
+          <% end %>
+
+          <%= if @has_next do %>
+            <span><%= link "Next", to: scheduled_path(@conn, :index, page: @page + 1, per_page: @per_page), class: "btn btn-default" %></span>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
   </div>
+  <p>
+    <%= button "Delete all", to: scheduled_path(@conn, :destroy), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-sm" %>
+  </p>
 <% end %>
