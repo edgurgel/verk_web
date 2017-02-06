@@ -16,8 +16,8 @@ defmodule VerkWeb.Mixfile do
      test_coverage: [tool: Coverex.Task, coveralls: true],
      name: "Verk Web",
      description: @description,
-     package: package,
-     deps: deps]
+     package: package(),
+     deps: deps()]
   end
 
   @default_config [http: [port: 4000], server: false,

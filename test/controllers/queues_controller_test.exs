@@ -8,7 +8,7 @@ defmodule VerkWeb.QueuesControllerTest do
 
   setup do
     new QueueStats
-    on_exit fn -> unload end
+    on_exit fn -> unload() end
     :ok
   end
 

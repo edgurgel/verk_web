@@ -4,13 +4,13 @@ defmodule VerkWeb.TrackingJobsHandlerTest do
   import :meck
 
   setup do
-    on_exit fn -> unload end
+    on_exit fn -> unload() end
     :ok
   end
 
   describe "init/1" do
     test "returns correct initial state" do
-      pid          = self
+      pid          = self()
       {:ok, state} = init(pid)
       assert state == {pid, %{finished: 0, failed: 0}}
     end
@@ -18,7 +18,7 @@ defmodule VerkWeb.TrackingJobsHandlerTest do
 
   describe "handle_event/2" do
     test "with job finished event" do
-      pid          = self
+      pid          = self()
       {:ok, state} = init(pid)
 
       assert handle_event(%Verk.Events.JobFinished{}, state) == {:ok, {pid, %{ finished: 1, failed: 0 }}}
@@ -26,7 +26,7 @@ defmodule VerkWeb.TrackingJobsHandlerTest do
     end
 
     test "with job failed event" do
-      pid          = self
+      pid          = self()
       {:ok, state} = init(pid)
 
       assert handle_event(%Verk.Events.JobFailed{}, state) == {:ok, {pid, %{ finished: 0, failed: 1 }}}
@@ -34,7 +34,7 @@ defmodule VerkWeb.TrackingJobsHandlerTest do
     end
 
     test "with unexpected event" do
-      pid          = self
+      pid          = self()
       {:ok, state} = init(pid)
 
       assert handle_event(:some_other_event, state) == {:ok, state}
@@ -43,7 +43,7 @@ defmodule VerkWeb.TrackingJobsHandlerTest do
 
   describe "handle_info/2" do
     test "broadcast_stats" do
-      pid   = self
+      pid   = self()
       state = {pid, %{finished: 1, failed: 2}}
 
       {:ok, new_state} = handle_info(:broadcast_stats, state)
