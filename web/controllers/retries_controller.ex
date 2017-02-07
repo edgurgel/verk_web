@@ -15,15 +15,24 @@ defmodule VerkWeb.RetriesController do
       per_page: paginator.per_page
   end
 
-  def destroy(conn, %{ "jobs_to_remove" => jobs_to_remove }) do
+  def destroy(conn, _params) do
+    RetrySet.clear!
+
+    redirect conn, to: retries_path(conn, :index)
+  end
+
+  def modify(conn, %{ "action" => "delete", "jobs_to_modify" => jobs_to_remove }) do
     jobs_to_remove = jobs_to_remove || []
 
     for job <- jobs_to_remove, do: RetrySet.delete_job!(job)
 
     redirect conn, to: retries_path(conn, :index)
   end
-  def destroy(conn, _params) do
-    RetrySet.clear!
+
+  def modify(conn, %{ "action" => "requeue", "jobs_to_modify" => jobs_to_requeue }) do
+    jobs_to_requeue = jobs_to_requeue || []
+
+    for job <- jobs_to_requeue, do: RetrySet.requeue_job!(job)
 
     redirect conn, to: retries_path(conn, :index)
   end
