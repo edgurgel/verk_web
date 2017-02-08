@@ -32,7 +32,7 @@ defmodule VerkWeb.RetriesController do
   def modify(conn, %{ "action" => "requeue", "jobs_to_modify" => jobs_to_requeue }) do
     jobs_to_requeue = jobs_to_requeue || []
 
-    for job <- jobs_to_requeue, do: RetrySet.requeue_job!(job)
+    for job <- jobs_to_requeue, job != "", do: RetrySet.requeue_job!(job)
 
     redirect conn, to: retries_path(conn, :index)
   end
