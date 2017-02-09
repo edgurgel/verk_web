@@ -9,10 +9,17 @@ defmodule VerkWeb.RetriesControllerTest do
     :ok
   end
 
-  test "DELETE / jobs delete expecific jobs", %{conn: conn} do
+  test "POST / action delete jobs delete specific jobs", %{conn: conn} do
     fake_job_json = "{\"jid\": \"123\"}"
     expect(RetrySet, :delete_job!, [fake_job_json], :ok)
-    delete conn, "/retries", jobs_to_remove: [fake_job_json]
+    post conn, "/retries", [jobs_to_modify: [fake_job_json], action: "delete"]
+    assert validate RetrySet
+  end
+
+  test "POST / action retry jobs retries specific jobs", %{conn: conn} do
+    fake_job_json = "{\"jid\": \"123\"}"
+    expect(RetrySet, :requeue_job!, [fake_job_json], :ok)
+    post conn, "/retries", [jobs_to_modify: [fake_job_json], action: "requeue"]
     assert validate RetrySet
   end
 
