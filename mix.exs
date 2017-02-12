@@ -26,7 +26,7 @@ defmodule VerkWeb.Mixfile do
   def application do
     [mod: {VerkWeb, []},
      env: [{VerkWeb.Endpoint, @default_config}],
-     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext, :verk, :timex]]
+     applications: [:phoenix, :phoenix_pubsub, :phoenix_html, :cowboy, :logger, :gettext, :verk, :timex, :basic_auth]]
   end
 
   defp elixirc_paths(:test), do: ["lib", "web", "test/support"]
