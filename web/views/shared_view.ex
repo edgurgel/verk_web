@@ -3,6 +3,6 @@ defmodule VerkWeb.SharedView do
 
   def enqueued_at(nil), do: "N/A"
   def enqueued_at(timestamp) do
-    timestamp |> Timex.from_unix |> Timex.format!("{relative}", :relative)
+    timestamp |> round |> Timex.from_unix |> Timex.format!("{relative}", :relative)
   end
 end
