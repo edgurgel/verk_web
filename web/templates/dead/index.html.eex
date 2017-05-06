@@ -7,7 +7,6 @@
 <% else %>
   <div>
     <%= form_for @conn, dead_path(@conn, :destroy), [as: :delete_job, method: "DELETE"], fn _ -> %>
-    <input name="jobs_to_remove[]" type="hidden" value="" />
     <table class="table">
       <thead>
         <tr>
