@@ -15267,8 +15267,8 @@ exports.default = App;
 });
 
 ;require.alias("phoenix_html/priv/static/phoenix_html.js", "phoenix_html");
-require.alias("rickshaw/rickshaw.js", "rickshaw");
 require.alias("phoenix/priv/static/phoenix.js", "phoenix");
+require.alias("rickshaw/rickshaw.js", "rickshaw");
 require.alias("d3/d3.js", "d3");require.register("___globals___", function(exports, require, module) {
   
 });})();require('___globals___');

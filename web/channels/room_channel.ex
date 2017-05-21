@@ -4,7 +4,7 @@ defmodule VerkWeb.RoomChannel do
 
   @doc false
   def join("rooms:jobs", _, socket) do
-    :ok = GenEvent.add_mon_handler(Verk.EventManager, {TrackingJobsHandler, self()}, self())
+    {:ok, _pid} = TrackingJobsHandler.start_link(self)
     {:ok, socket}
   end
 
@@ -17,8 +17,5 @@ defmodule VerkWeb.RoomChannel do
     {:noreply, socket}
   end
 
-  def terminate(_reason, _socket) do
-    GenEvent.remove_handler(Verk.EventManager, {TrackingJobsHandler, self()}, self())
-    :ok
-  end
+  def terminate(_reason, _socket), do: :ok
 end
