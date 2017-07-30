@@ -1,7 +1,8 @@
 import PageIndex from "./page_index"
+import QueuesIndex from "./queues_index"
 
 const views = {
-  PageIndex
+  PageIndex, QueuesIndex
 }
 
 function handleDOMContentLoaded() {

@@ -15187,16 +15187,20 @@ require("./main");
 });
 
 ;require.register("web/static/js/main.js", function(exports, require, module) {
-'use strict';
+"use strict";
 
-var _page_index = require('./page_index');
+var _page_index = require("./page_index");
 
 var _page_index2 = _interopRequireDefault(_page_index);
+
+var _queues_index = require("./queues_index");
+
+var _queues_index2 = _interopRequireDefault(_queues_index);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var views = {
-  PageIndex: _page_index2.default
+  PageIndex: _page_index2.default, QueuesIndex: _queues_index2.default
 };
 
 function handleDOMContentLoaded() {
@@ -15279,9 +15283,79 @@ var PageIndex = function () {
 exports.default = PageIndex;
 });
 
+;require.register("web/static/js/queues_index.js", function(exports, require, module) {
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _phoenix = require("phoenix");
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var QueuesIndex = function () {
+  function QueuesIndex() {
+    _classCallCheck(this, QueuesIndex);
+  }
+
+  _createClass(QueuesIndex, null, [{
+    key: "init",
+    value: function init() {
+      var socket = new _phoenix.Socket("/socket");
+      socket.connect();
+
+      var chan = socket.channel("rooms:queues", {});
+      chan.join();
+
+      $(".queue_control form").each(function (n, el) {
+        var form = $(el);
+        form.on("submit", function () {
+          $.post(form.attr("action"), form.serialize());
+          return false;
+        });
+      });
+
+      chan.on("queue:status", function (msg) {
+        var queue = msg["queue"],
+            status = msg["status"],
+            button = $("td#queue_" + queue + "_control button:first"),
+            form = $(button.parent()),
+            row = $("tr.queue-" + queue);
+
+        if (row.size() === 0) return;
+
+        row.removeClass("running pausing paused");
+        row.addClass(status);
+
+        if (status === "running") {
+          form.attr("action", "/queues/" + queue + "/pause");
+          button.html("Pause");
+          button.removeAttr("disabled");
+        } else if (status === "pausing") {
+          form.attr("action", "");
+          button.html("Pausing...");
+          button.attr("disabled", "disabled");
+        } else if (status === "paused") {
+          form.attr("action", "/queues/" + queue + "/resume");
+          button.html("Resume");
+          button.removeAttr("disabled");
+        }
+      });
+    }
+  }]);
+
+  return QueuesIndex;
+}();
+
+exports.default = QueuesIndex;
+});
+
 ;require.alias("phoenix_html/priv/static/phoenix_html.js", "phoenix_html");
-require.alias("rickshaw/rickshaw.js", "rickshaw");
 require.alias("phoenix/priv/static/phoenix.js", "phoenix");
+require.alias("rickshaw/rickshaw.js", "rickshaw");
 require.alias("d3/d3.js", "d3");require.register("___globals___", function(exports, require, module) {
   
 });})();require('___globals___');
