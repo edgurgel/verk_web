@@ -15183,14 +15183,32 @@ require("phoenix_html");
 
 require("rickshaw");
 
-var _socket = require("./socket");
-
-var _socket2 = _interopRequireDefault(_socket);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+require("./main");
 });
 
-;require.register("web/static/js/socket.js", function(exports, require, module) {
+;require.register("web/static/js/main.js", function(exports, require, module) {
+'use strict';
+
+var _page_index = require('./page_index');
+
+var _page_index2 = _interopRequireDefault(_page_index);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var views = {
+  PageIndex: _page_index2.default
+};
+
+function handleDOMContentLoaded() {
+  var viewName = document.getElementsByTagName('body')[0].dataset.jsViewPath;
+
+  views[viewName].init();
+}
+
+window.addEventListener('DOMContentLoaded', handleDOMContentLoaded, false);
+});
+
+require.register("web/static/js/page_index.js", function(exports, require, module) {
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -15209,16 +15227,14 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var App = function () {
-  function App() {
-    _classCallCheck(this, App);
+var PageIndex = function () {
+  function PageIndex() {
+    _classCallCheck(this, PageIndex);
   }
 
-  _createClass(App, null, [{
+  _createClass(PageIndex, null, [{
     key: "init",
     value: function init() {
-      var socket = new _phoenix.Socket("/socket");
-
       var graph = new _rickshaw2.default.Graph({
         element: document.querySelector("#graph"),
         renderer: 'area',
@@ -15244,6 +15260,7 @@ var App = function () {
         }
       });
 
+      var socket = new _phoenix.Socket("/socket");
       socket.connect();
 
       var chan = socket.channel("rooms:jobs", {});
@@ -15256,19 +15273,15 @@ var App = function () {
     }
   }]);
 
-  return App;
+  return PageIndex;
 }();
 
-$(function () {
-  return App.init();
-});
-
-exports.default = App;
+exports.default = PageIndex;
 });
 
 ;require.alias("phoenix_html/priv/static/phoenix_html.js", "phoenix_html");
-require.alias("phoenix/priv/static/phoenix.js", "phoenix");
 require.alias("rickshaw/rickshaw.js", "rickshaw");
+require.alias("phoenix/priv/static/phoenix.js", "phoenix");
 require.alias("d3/d3.js", "d3");require.register("___globals___", function(exports, require, module) {
   
 });})();require('___globals___');

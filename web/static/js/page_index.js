@@ -1,10 +1,8 @@
 import {Socket, LongPoller} from "phoenix"
 import Rickshaw from "rickshaw"
 
-class App {
-  static init(){
-    let socket = new Socket(MOUNT_PATH + "/socket")
-
+class PageIndex {
+  static init() {
     let graph = new Rickshaw.Graph({
       element: document.querySelector("#graph"),
       renderer: 'area',
@@ -21,19 +19,20 @@ class App {
       })
     })
 
-    var hoverDetail = new Rickshaw.Graph.HoverDetail( {
+    let hoverDetail = new Rickshaw.Graph.HoverDetail( {
       graph: graph,
-      xFormatter: function(x) {
+      xFormatter: x => {
         return new Date(x * 1000).toString()
       },
-      yFormatter: function(y) {
+      yFormatter: y => {
         return parseInt(y)
       }
     })
 
+    let socket = new Socket(MOUNT_PATH + "/socket")
     socket.connect()
 
-    var chan = socket.channel("rooms:jobs", {})
+    let chan = socket.channel("rooms:jobs", {})
     chan.join()
 
     chan.on("job:stats", msg => {
@@ -43,6 +42,4 @@ class App {
   }
 }
 
-$( () => App.init() )
-
-export default App
+export default PageIndex
