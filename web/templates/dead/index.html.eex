@@ -63,7 +63,7 @@
 
   <% end %>
     <p>
-      <%= button "Delete all", to: dead_path(@conn, :destroy, a: "true"), method: :delete, data: [confirm: "Are you sure?"], form: [a: "b"], class: "btn btn-danger btn-sm" %>
+      <%= button "Delete all", to: dead_path(@conn, :destroy, a: "true"), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-sm" %>
     </p>
   </div>
 <% end %>
