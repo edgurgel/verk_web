@@ -3,7 +3,7 @@ import Rickshaw from "rickshaw"
 
 class App {
   static init(){
-    let socket = new Socket("/socket")
+    let socket = new Socket(MOUNT_PATH + "/socket")
 
     let graph = new Rickshaw.Graph({
       element: document.querySelector("#graph"),
