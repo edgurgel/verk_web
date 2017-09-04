@@ -7,7 +7,7 @@ defmodule VerkWeb.Mixfile do
 
   def project do
     [app: :verk_web,
-     version: "1.0.1",
+     version: "1.0.2",
      elixir: "~> 1.3",
      elixirc_paths: elixirc_paths(Mix.env),
      compilers: [:phoenix, :gettext] ++ Mix.compilers,
