@@ -14,8 +14,8 @@ First, add Verk Web to your `mix.exs` dependencies:
 
 ```elixir
 def deps do
-  [{:verk_web, "~> 0.14"},
-   {:verk,     "~> 0.14"}]
+  [{:verk_web, "~> 1.0"},
+   {:verk,     "~> 1.0"}]
 end
 ```
 
