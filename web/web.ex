@@ -44,6 +44,7 @@ defmodule VerkWeb.Web do
       import VerkWeb.Router.Helpers
       import VerkWeb.ErrorHelpers
       import VerkWeb.Gettext
+      import VerkWeb.Queue.Helpers
     end
   end
 
