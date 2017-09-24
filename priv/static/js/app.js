@@ -15342,8 +15342,11 @@ var views = {
 
 function handleDOMContentLoaded() {
   var viewName = document.getElementsByTagName('body')[0].dataset.jsViewPath;
+  var view = views[viewName];
 
-  views[viewName].init();
+  if (view) {
+    view.init();
+  }
 }
 
 window.addEventListener('DOMContentLoaded', handleDOMContentLoaded, false);
@@ -15490,8 +15493,8 @@ var QueuesIndex = function () {
 exports.default = QueuesIndex;
 });
 
-;require.alias("phoenix/priv/static/phoenix.js", "phoenix");
-require.alias("phoenix_html/priv/static/phoenix_html.js", "phoenix_html");
+;require.alias("phoenix_html/priv/static/phoenix_html.js", "phoenix_html");
+require.alias("phoenix/priv/static/phoenix.js", "phoenix");
 require.alias("rickshaw/rickshaw.js", "rickshaw");
 require.alias("d3/d3.js", "d3");require.register("___globals___", function(exports, require, module) {
   
