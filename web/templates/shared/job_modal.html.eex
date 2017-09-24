@@ -53,8 +53,8 @@
         <%= unless assigns[:perform_at] do %>
           <%= link to: job_path(@conn, :show, @job.queue, @job.jid) do %>
             <button type="button" class="btn btn-info">Inspect</button>
-          <%= end %>
-        <%= end %>
+          <% end %>
+        <% end %>
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>

@@ -5,13 +5,13 @@ defmodule VerkWeb.RoomChannel do
 
   @doc false
   def join("rooms:jobs", _, socket) do
-    {:ok, _pid} = TrackingJobsHandler.start_link(self)
+    {:ok, _pid} = TrackingJobsHandler.start_link(self())
     {:ok, socket}
   end
 
   @doc false
   def join("rooms:queues", _, socket) do
-    {:ok, _pid} = TrackingQueuesHandler.start_link(self)
+    {:ok, _pid} = TrackingQueuesHandler.start_link(self())
     {:ok, socket}
   end
 
