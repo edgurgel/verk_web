@@ -15342,8 +15342,11 @@ var views = {
 
 function handleDOMContentLoaded() {
   var viewName = document.getElementsByTagName('body')[0].dataset.jsViewPath;
+  var view = views[viewName];
 
-  views[viewName].init();
+  if (view) {
+    view.init();
+  }
 }
 
 window.addEventListener('DOMContentLoaded', handleDOMContentLoaded, false);

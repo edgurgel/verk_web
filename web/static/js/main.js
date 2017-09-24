@@ -7,8 +7,9 @@ const views = {
 
 function handleDOMContentLoaded() {
   const viewName = document.getElementsByTagName('body')[0].dataset.jsViewPath;
+  const view = views[viewName];
 
-  views[viewName].init();
+  if (view) { view.init(); }
 }
 
 window.addEventListener('DOMContentLoaded', handleDOMContentLoaded, false);
