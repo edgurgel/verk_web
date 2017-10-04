@@ -35,12 +35,20 @@ end
 
 ## If you'd like to mount VerkWeb on another Endpoint:
 
-
 ```elixir
 defmodule MyApp.Endpoint do
   use VerkWeb.Mount, path: "/verk"
   ...
 end
+```
+
+Then configure the VerkWeb endpoint to know about the new top level path.
+
+```elixir
+# in config.exs
+
+config :verk_web, VerkWeb.Endpoint,
+  url: [path: "/verk"]
 ```
 
 That should be it! :)
