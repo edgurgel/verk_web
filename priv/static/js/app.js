@@ -10988,37 +10988,52 @@ var Timer = function () {
 require.register("phoenix_html/priv/static/phoenix_html.js", function(exports, require, module) {
   require = __makeRelativeRequire(require, {}, "phoenix_html");
   (function() {
-    'use strict';
+    "use strict";
 
-function isLinkToSubmitParent(element) {
-  var isLinkTag = element.tagName === 'A';
-  var shouldSubmitParent = element.getAttribute('data-submit') === 'parent';
+(function() {
+  function buildHiddenInput(name, value) {
+    var input = document.createElement("input");
+    input.type = "hidden";
+    input.name = name;
+    input.value = value;
+    return input;
+  }
 
-  return isLinkTag && shouldSubmitParent;
-}
-
-function didHandleSubmitLinkClick(element) {
-  while (element && element.getAttribute) {
-    if (isLinkToSubmitParent(element)) {
-      var message = element.getAttribute('data-confirm');
-      if (message === null || confirm(message)) {
-        element.parentNode.submit();
-      };
-      return true;
-    } else {
-      element = element.parentNode;
+  function handleLinkClick(link) {
+    var message = link.getAttribute("data-confirm");
+    if(message && !window.confirm(message)) {
+        return;
     }
-  }
-  return false;
-}
 
-// for links with HTTP methods other than GET
-window.addEventListener('click', function (event) {
-  if (event.target && didHandleSubmitLinkClick(event.target)) {
-    event.preventDefault();
-    return false;
+    var to = link.getAttribute("data-to"),
+        method = buildHiddenInput("_method", link.getAttribute("data-method")),
+        csrf = buildHiddenInput("_csrf_token", link.getAttribute("data-csrf")),
+        form = document.createElement("form");
+
+    form.method = (link.getAttribute("data-method") === "get") ? "get" : "post";
+    form.action = to;
+    form.style.display = "hidden";
+
+    form.appendChild(csrf);
+    form.appendChild(method);
+    document.body.appendChild(form);
+    form.submit();
   }
-}, false);
+
+  window.addEventListener("click", function(e) {
+    var element = e.target;
+
+    while (element && element.getAttribute) {
+      if(element.getAttribute("data-method")) {
+        handleLinkClick(element);
+        e.preventDefault();
+        return false;
+      } else {
+        element = element.parentNode;
+      }
+    }
+  }, false);
+})();
   })();
 });
 
@@ -15493,8 +15508,8 @@ var QueuesIndex = function () {
 exports.default = QueuesIndex;
 });
 
-;require.alias("phoenix_html/priv/static/phoenix_html.js", "phoenix_html");
-require.alias("phoenix/priv/static/phoenix.js", "phoenix");
+;require.alias("phoenix/priv/static/phoenix.js", "phoenix");
+require.alias("phoenix_html/priv/static/phoenix_html.js", "phoenix_html");
 require.alias("rickshaw/rickshaw.js", "rickshaw");
 require.alias("d3/d3.js", "d3");require.register("___globals___", function(exports, require, module) {
   
