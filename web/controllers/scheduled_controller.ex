@@ -16,15 +16,24 @@ defmodule VerkWeb.ScheduledController do
       per_page: paginator.per_page
   end
 
-  def destroy(conn, %{ "jobs_to_remove" => jobs_to_remove }) do
+  def destroy(conn, _params) do
+    Verk.SortedSet.clear!(@schedule_key, Verk.Redis)
+
+    redirect conn, to: scheduled_path(conn, :index)
+  end
+
+  def modify(conn, %{ "action" => "delete", "jobs_to_modify" => jobs_to_remove }) do
     jobs_to_remove = jobs_to_remove || []
 
     for job <- jobs_to_remove, do: SortedSet.delete_job!(@schedule_key, job, Redis)
 
     redirect conn, to: scheduled_path(conn, :index)
   end
-  def destroy(conn, _params) do
-    Verk.SortedSet.clear!(@schedule_key, Verk.Redis)
+
+  def modify(conn, %{ "action" => "requeue", "jobs_to_modify" => jobs_to_requeue }) do
+    jobs_to_requeue = jobs_to_requeue || []
+
+    for job <- jobs_to_requeue, job != "", do: Verk.SortedSet.requeue_job!(@schedule_key, job, Redis)
 
     redirect conn, to: scheduled_path(conn, :index)
   end
