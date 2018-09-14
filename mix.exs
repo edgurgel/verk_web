@@ -36,7 +36,7 @@ defmodule VerkWeb.Mixfile do
     [{:phoenix, "~> 1.3.0"},
      {:phoenix_pubsub, "~> 1.0"},
      {:phoenix_html, "~> 2.6"},
-     {:gettext, "~> 0.9"},
+     {:gettext, "~> 0.14.1"},
      {:verk, "~> 1.1"},
      {:cowboy, "~> 1.0"},
      {:basic_auth, "~> 2.0"},
@@ -45,7 +45,7 @@ defmodule VerkWeb.Mixfile do
      {:ex_doc, "~> 0.13", only: :dev},
      {:coverex, "~> 1.4", only: :test},
      {:meck, "~> 0.8", only: :test},
-     {:timex, "~> 3.1.0"}]
+     {:timex, "~> 3.3.0"}]
   end
 
   defp package do
