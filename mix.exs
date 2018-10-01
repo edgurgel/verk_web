@@ -45,7 +45,7 @@ defmodule VerkWeb.Mixfile do
      {:ex_doc, "~> 0.13", only: :dev},
      {:coverex, "~> 1.4", only: :test},
      {:meck, "~> 0.8", only: :test},
-     {:timex, "~> 3.3.0"}]
+     {:timex, "~> 3.4.1"}]
   end
 
   defp package do
