@@ -42,6 +42,15 @@ defmodule MyApp.Endpoint do
 end
 ```
 
+You also have to mount the same path in router.
+
+```elixir
+defmodule MyApp.Router do
+  use VerkWeb.MountRoute, path: "/verk"
+  ...
+end
+```
+
 Then configure the VerkWeb endpoint to know about the new top level path.
 
 ```elixir
