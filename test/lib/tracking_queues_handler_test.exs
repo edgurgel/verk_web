@@ -4,7 +4,7 @@ defmodule VerkWeb.TrackingQueuesHandlerTest do
   import :meck
 
   setup do
-    on_exit fn -> unload() end
+    on_exit(fn -> unload() end)
     :ok
   end
 
