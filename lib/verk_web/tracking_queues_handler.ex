@@ -15,13 +15,16 @@ defmodule VerkWeb.TrackingQueuesHandler do
   end
 
   defp handle_event(%Verk.Events.QueueRunning{} = event, pid) do
-    send pid, {:queue_status, %{queue: event.queue, status: "running"}}
+    send(pid, {:queue_status, %{queue: event.queue, status: "running"}})
   end
+
   defp handle_event(%Verk.Events.QueuePausing{} = event, pid) do
-    send pid, {:queue_status, %{queue: event.queue, status: "pausing"}}
+    send(pid, {:queue_status, %{queue: event.queue, status: "pausing"}})
   end
+
   defp handle_event(%Verk.Events.QueuePaused{} = event, pid) do
-    send pid, {:queue_status, %{queue: event.queue, status: "paused"}}
+    send(pid, {:queue_status, %{queue: event.queue, status: "paused"}})
   end
+
   defp handle_event(_, _), do: :ok
 end

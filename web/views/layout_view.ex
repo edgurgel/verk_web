@@ -13,9 +13,9 @@ defmodule VerkWeb.LayoutView do
   """
   def js_view_name(conn, view_template) do
     [view_name(conn), template_name(view_template)]
-    |> Enum.reverse
+    |> Enum.reverse()
     |> Enum.map(&String.capitalize/1)
-    |> Enum.reverse
+    |> Enum.reverse()
     |> Enum.join("")
   end
 
@@ -24,7 +24,7 @@ defmodule VerkWeb.LayoutView do
   defp view_name(conn) do
     conn
     |> view_module
-    |> Phoenix.Naming.resource_name
+    |> Phoenix.Naming.resource_name()
     |> String.replace("_view", "")
   end
 

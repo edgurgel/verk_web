@@ -3,6 +3,6 @@ defmodule VerkWeb.PageController do
   use VerkWeb.Web, :controller
 
   def index(conn, _params) do
-    render conn, "index.html"
+    render(conn, "index.html")
   end
 end

@@ -20,12 +20,12 @@ defmodule VerkWeb.RoomChannel do
   end
 
   def handle_info({:stats, stats}, socket) do
-    push socket, "job:stats", stats
+    push(socket, "job:stats", stats)
     {:noreply, socket}
   end
 
   def handle_info({:queue_status, msg}, socket) do
-    push socket, "queue:status", msg
+    push(socket, "queue:status", msg)
     {:noreply, socket}
   end
 

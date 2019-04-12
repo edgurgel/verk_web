@@ -1,3 +1,2 @@
-ExUnit.start
-Verk.Supervisor.start_link
-
+ExUnit.start()
+Verk.Supervisor.start_link()

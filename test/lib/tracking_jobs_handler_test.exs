@@ -4,14 +4,16 @@ defmodule VerkWeb.TrackingJobsHandlerTest do
   import :meck
 
   setup do
-    on_exit fn -> unload() end
+    on_exit(fn -> unload() end)
     :ok
   end
 
   describe "init/1" do
     test "returns correct initial state" do
       pid = self()
-      assert {:consumer, {^pid, %{finished: 0, failed: 0}}, subscribe_to: [Verk.EventProducer]} = init(pid)
+
+      assert {:consumer, {^pid, %{finished: 0, failed: 0}}, subscribe_to: [Verk.EventProducer]} =
+               init(pid)
     end
   end
 
@@ -20,16 +22,22 @@ defmodule VerkWeb.TrackingJobsHandlerTest do
       pid = self()
       {:consumer, state, subscribe_to: [Verk.EventProducer]} = init(pid)
 
-      assert handle_events([%Verk.Events.JobFinished{}], :from, state) == {:noreply, [], {pid, %{ finished: 1, failed: 0 }}}
-      assert handle_events([%Verk.Events.JobFinished{}], :from, {pid, %{finished: 10, failed: 0}}) == {:noreply, [], {pid, %{ finished: 11, failed: 0 }}}
+      assert handle_events([%Verk.Events.JobFinished{}], :from, state) ==
+               {:noreply, [], {pid, %{finished: 1, failed: 0}}}
+
+      assert handle_events([%Verk.Events.JobFinished{}], :from, {pid, %{finished: 10, failed: 0}}) ==
+               {:noreply, [], {pid, %{finished: 11, failed: 0}}}
     end
 
     test "with job failed event" do
       pid = self()
       {:consumer, state, subscribe_to: [Verk.EventProducer]} = init(pid)
 
-      assert handle_events([%Verk.Events.JobFailed{}], :from, state) == {:noreply, [], {pid, %{ finished: 0, failed: 1 }}}
-      assert handle_events([%Verk.Events.JobFailed{}], :from, {pid, %{finished: 0, failed: 10}}) == {:noreply, [], {pid, %{ finished: 0, failed: 11 }}}
+      assert handle_events([%Verk.Events.JobFailed{}], :from, state) ==
+               {:noreply, [], {pid, %{finished: 0, failed: 1}}}
+
+      assert handle_events([%Verk.Events.JobFailed{}], :from, {pid, %{finished: 0, failed: 10}}) ==
+               {:noreply, [], {pid, %{finished: 0, failed: 11}}}
     end
 
     test "with unexpected event" do
@@ -42,7 +50,7 @@ defmodule VerkWeb.TrackingJobsHandlerTest do
 
   describe "handle_info/2" do
     test "broadcast_stats" do
-      pid   = self()
+      pid = self()
       state = {pid, %{finished: 1, failed: 2}}
 
       {:noreply, [], new_state} = handle_info(:broadcast_stats, state)

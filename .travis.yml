@@ -5,6 +5,7 @@ elixir:
 otp_release:
   - 21.0
 script:
+  - if [[ `elixir -v` = *"1.7"* ]]; then mix format --check-formatted; fi
   - MIX_ENV=test mix test --trace --cover
 services:
   - redis-server

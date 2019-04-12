@@ -7,11 +7,11 @@ defmodule VerkWeb.JobView do
 
   def current_stacktrace(process_info) do
     info(process_info, :current_stacktrace)
-    |> Exception.format_stacktrace
-    |> Phoenix.HTML.Format.text_to_html
+    |> Exception.format_stacktrace()
+    |> Phoenix.HTML.Format.text_to_html()
   end
 
   def utc_format(time) do
-    time |> DateTime.to_string
+    time |> DateTime.to_string()
   end
 end

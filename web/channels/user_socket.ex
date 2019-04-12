@@ -2,7 +2,7 @@ defmodule VerkWeb.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  channel "rooms:*", VerkWeb.RoomChannel, websocket: true, longpoll: true
+  channel("rooms:*", VerkWeb.RoomChannel, websocket: true, longpoll: true)
 
   # Socket params are passed from the client and can
   # be used to verify and authenticate a user. After
