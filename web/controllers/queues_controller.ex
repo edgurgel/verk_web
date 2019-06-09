@@ -1,10 +1,24 @@
 defmodule VerkWeb.QueuesController do
   require Verk.QueueStats
   use VerkWeb.Web, :controller
+  alias Verk.Queue
 
   def index(conn, params) do
+    {:ok, queues} = Verk.QueueList.all(params["search"] || "")
+
+    queue_stats =
+      Enum.map(queues, fn queue ->
+        %{
+          queue: queue,
+          status: Verk.Manager.status(String.to_existing_atom(queue)),
+          enqueued_counter: Queue.count!(queue),
+          running_counter: Queue.count_pending!(queue)
+        }
+        |> Map.merge(Verk.Stats.queue_total(queue))
+      end)
+
     render(conn, "index.html",
-      queue_stats: Verk.QueueStats.all(params["search"] || ""),
+      queue_stats: queue_stats,
       search: params["search"]
     )
   end
@@ -12,21 +26,23 @@ defmodule VerkWeb.QueuesController do
   def show(conn, %{"queue" => queue}) do
     params = conn.params
 
+    jobs = Queue.range!(queue, params["from"] || "0-0")
+
     paginator =
-      VerkWeb.RangePaginator.new(Verk.Queue.count!(queue), params["page"], params["per_page"])
+      VerkWeb.QueueRangePaginator.new(jobs, params["from"] || "0-0", params["per_page"] || 25)
 
     render(conn, "show.html",
       queue: queue,
-      enqueued_jobs: Verk.Queue.range!(queue, paginator.from, paginator.to),
+      enqueued_jobs: jobs,
       has_next: paginator.has_next,
       has_prev: paginator.has_prev,
-      page: paginator.page,
-      per_page: paginator.per_page
+      from: paginator.from,
+      to: paginator.to
     )
   end
 
   def busy(conn, %{"queue" => queue}) do
-    running_jobs = Verk.WorkersManager.running_jobs(queue)
+    {:ok, running_jobs} = Queue.pending_jobs(queue)
     render(conn, "busy.html", queue: queue, running_jobs: running_jobs)
   end
 

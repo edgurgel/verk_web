@@ -8,24 +8,10 @@ defmodule VerkWeb.QueuesView do
     end)
   end
 
-  def enqueued_jobs(jobs) do
+  def jobs(jobs) do
     Enum.map(jobs, fn job ->
       %{
         jid: job.jid,
-        class: job.class,
-        args: job.args |> inspect,
-        job: job
-      }
-    end)
-  end
-
-  def jobs(running_jobs) do
-    Enum.map(running_jobs, fn running_job ->
-      job = running_job.job
-
-      %{
-        jid: job.jid,
-        started_at: running_job.started_at |> DateTime.to_string(),
         class: job.class,
         args: job.args |> inspect,
         job: job

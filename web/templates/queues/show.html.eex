@@ -14,7 +14,7 @@
         </tr>
       </thead>
       <tbody>
-      <%= for job <- enqueued_jobs(@enqueued_jobs) do %>
+      <%= for job <- jobs(@enqueued_jobs) do %>
         <tr>
           <td><%= job.jid %></td>
           <td><%= job.class %></td>
@@ -33,11 +33,11 @@
 
     <div>
       <%= if @has_prev do %>
-        <span><%= link "Previous", to: queues_path(@conn, :show, @queue, page: @page - 1, per_page: @per_page), class: "btn btn-default" %></span>
+        <span><%= link "Previous", to: queues_path(@conn, :show, @queue, from: "0-0", to: @from), class: "btn btn-default" %></span>
       <% end %>
 
       <%= if @has_next do %>
-        <span><%= link "Next", to: queues_path(@conn, :show, @queue, page: @page + 1, per_page: @per_page), class: "btn btn-default" %></span>
+        <span><%= link "Next", to: queues_path(@conn, :show, @queue, from: @to, to: "+"), class: "btn btn-default" %></span>
       <% end %>
     </div>
   </div>

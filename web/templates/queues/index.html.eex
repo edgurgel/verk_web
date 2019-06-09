@@ -24,21 +24,17 @@
         <th>Queue</th>
         <th>Running</th>
         <th>Enqueued</th>
-        <th>Processed</th>
-        <th>Failed</th>
         <th>Lifetime Processed</th>
         <th>Lifetime Failed</th>
         <th></th>
       </tr>
     </thead>
     <tbody>
-      <%= for queue <- stats(@queue_stats) do %>
+      <%= for queue <- @queue_stats do %>
         <tr class="queue-row queue-<%= queue.queue %> <%= to_string(queue.status) %>">
           <td><%= link queue.queue, to: queues_path(@conn, :show, queue.queue) %></td>
           <td><%= link queue.running_counter |> to_string , to: queues_path(@conn, :busy, queue.queue) %></td>
           <td><%= link queue.enqueued_counter |> to_string, to: queues_path(@conn, :show, queue.queue) %></td>
-          <td><%= queue.finished_counter %></td>
-          <td><%= queue.failed_counter %></td>
           <td class="lifetime"><%= queue.total_processed %></td>
           <td class="lifetime"><%= queue.total_failed %></td>
           <td class="queue_control" id="queue_<%= queue.queue %>_control"><%= pause_button(@conn, queue.queue, queue.status) %></td>

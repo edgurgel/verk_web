@@ -7,26 +7,16 @@
   <thead>
     <tr>
       <th>Id</th>
-      <th>Started at</th>
       <th>Class/Worker</th>
       <th>Arguments</th>
-      <th></th>
     </tr>
   </thead>
   <tbody>
   <%= for job <- jobs(@running_jobs) do %>
     <tr>
       <td><%= job.jid %></td>
-      <td><%= job.started_at %>
       <td><%= job.class %></td>
       <td><%= job.args %></td>
-      <td>
-        <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#job-<%= job.jid %>-modal">
-          Details
-        </button>
-
-        <%= render VerkWeb.SharedView, "job_modal.html", job: job.job, conn: @conn %>
-      </td>
     </tr>
   <% end %>
   </tbody>
