@@ -10,7 +10,7 @@ config :verk_web, VerkWeb.Endpoint,
   url: [host: "localhost"],
   root: Path.dirname(__DIR__),
   render_errors: [accepts: ~w(html json)],
-  pubsub: [name: VerkWeb.PubSub, adapter: Phoenix.PubSub.PG2]
+  pubsub_server: VerkWeb.PubSub
 
 # Configures Elixir's Logger
 config :logger, :console,

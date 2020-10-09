@@ -36,7 +36,7 @@
     </nav>
 
     <div class="container">
-      <%= render @view_module, @view_template, assigns %>
+      <%= @inner_content %>
     </div>
 
     <script> MOUNT_PATH = "<%= @conn.assigns[:mount_path] %>"</script>

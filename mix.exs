@@ -51,8 +51,8 @@ defmodule VerkWeb.Mixfile do
 
   defp deps do
     [
-      {:phoenix, "~> 1.4.0"},
-      {:phoenix_pubsub, "~> 1.0"},
+      {:phoenix, "~> 1.5.0"},
+      {:phoenix_pubsub, "~> 2.0"},
       {:phoenix_html, "~> 2.6"},
       {:gettext, "~> 0.16"},
       {:verk, "~> 1.1"},
