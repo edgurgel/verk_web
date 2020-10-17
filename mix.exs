@@ -9,7 +9,7 @@ defmodule VerkWeb.Mixfile do
     [
       app: :verk_web,
       version: "1.5.1",
-      elixir: "~> 1.6",
+      elixir: "~> 1.11",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
       build_embedded: Mix.env() == :prod,
@@ -22,27 +22,10 @@ defmodule VerkWeb.Mixfile do
     ]
   end
 
-  @default_config [
-    http: [port: 4000],
-    server: false,
-    pubsub: [name: VerkWeb.PubSub, adapter: Phoenix.PubSub.PG2]
-  ]
-
   def application do
     [
       mod: {VerkWeb, []},
-      env: [{VerkWeb.Endpoint, @default_config}],
-      applications: [
-        :phoenix,
-        :phoenix_pubsub,
-        :phoenix_html,
-        :cowboy,
-        :logger,
-        :gettext,
-        :verk,
-        :timex,
-        :basic_auth
-      ]
+      extra_applications: [:logger]
     ]
   end
 
@@ -51,14 +34,13 @@ defmodule VerkWeb.Mixfile do
 
   defp deps do
     [
-      {:phoenix, "~> 1.4.0"},
-      {:phoenix_pubsub, "~> 1.0"},
+      {:phoenix, "~> 1.5.0"},
+      {:phoenix_pubsub, "~> 2.0"},
       {:phoenix_html, "~> 2.6"},
       {:gettext, "~> 0.16"},
-      {:verk, "~> 1.1"},
+      {:verk, "~> 1.7.1"},
       {:plug_cowboy, "~> 2.0"},
-      {:plug, "~> 1.7"},
-      {:basic_auth, "~> 2.0"},
+      {:plug, "~> 1.10"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
       {:earmark, "~> 1.0", only: :dev},
       {:ex_doc, "~> 0.13", only: :dev},

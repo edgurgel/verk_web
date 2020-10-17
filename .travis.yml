@@ -1,11 +1,10 @@
 language: elixir
 elixir:
-  - 1.6.6
-  - 1.7.3
+  - 1.11.0
 otp_release:
-  - 21.0
+  - 22.0
 script:
-  - if [[ `elixir -v` = *"1.7"* ]]; then mix format --check-formatted; fi
+  - if [[ `elixir -v` = *"1.11"* ]]; then mix format --check-formatted; fi
   - MIX_ENV=test mix test --trace --cover
 services:
   - redis-server
