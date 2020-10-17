@@ -14,7 +14,7 @@ First, add Verk Web to your `mix.exs` dependencies:
 
 ```elixir
 def deps do
-  [{:verk_web, "~> 1.5.1"},
+  [{:verk_web, "~> 1.6"},
    {:verk,     "~> 1.0"}]
 end
 ```
@@ -25,13 +25,6 @@ and run
 $ mix deps.get
 ```
 
-Now, list `:verk_web` and `:verk` applications as your application dependencies. They must run together on the same node.
-
-```elixir
-def application do
-  [applications: [:verk_web, :verk]]
-end
-```
 
 ## If you'd like to mount VerkWeb on another Endpoint:
 
