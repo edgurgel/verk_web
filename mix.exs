@@ -8,7 +8,7 @@ defmodule VerkWeb.Mixfile do
   def project do
     [
       app: :verk_web,
-      version: "1.6.0",
+      version: "1.6.1",
       elixir: "~> 1.11",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
@@ -46,8 +46,9 @@ defmodule VerkWeb.Mixfile do
       {:ex_doc, "~> 0.13", only: :dev},
       {:coverex, "~> 1.4", only: :test},
       {:meck, "~> 0.8", only: :test},
-      {:timex, "~> 3.3.0"},
-      {:jason, "~> 1.1"}
+      {:timex, "~> 3.6.4"},
+      {:jason, "~> 1.1"},
+      {:certifi, "2.5.3"}
     ]
   end
 
