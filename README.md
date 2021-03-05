@@ -25,7 +25,6 @@ and run
 $ mix deps.get
 ```
 
-
 ## If you'd like to mount VerkWeb on another Endpoint:
 
 ```elixir
@@ -64,6 +63,7 @@ config :verk_web, VerkWeb.Endpoint,
   server: true, #-> this is to tell VerkWeb to start a standalone application!
   pubsub: [name: VerkWeb.PubSub, adapter: Phoenix.PubSub.PG2] # The pubsub adapter to use (default)
 ```
+
 Now VerkWeb would run on port 4000,
 
 ## Allowing WebSocket connections
@@ -112,9 +112,8 @@ config :verk_web, :authorization,
 
 To start Verk Web app:
 
-  1. Install dependencies with `mix deps.get`
-  1. Install front-end dependencies `npm install && bower install`
-  1. Start Phoenix endpoint with `mix phoenix.server`
+1. Install dependencies with `mix deps.get`
+1. Install front-end dependencies `npm install && node_modules/bower/bin/bower install`
+1. Start Phoenix endpoint with `mix phoenix.server`
 
 Now you can visit [`localhost:4000`](http://localhost:4000) from your browser.
-
