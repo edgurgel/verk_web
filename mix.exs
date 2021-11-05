@@ -38,7 +38,7 @@ defmodule VerkWeb.Mixfile do
       {:phoenix_pubsub, "~> 2.0"},
       {:phoenix_html, "~> 3.0"},
       {:gettext, "~> 0.16"},
-      {:verk, "~> 1.7.3"},
+      {:verk, github: "masakradev/verk", branch: "bump-redix-1-1-4"},
       {:plug_cowboy, "~> 2.0"},
       {:plug, "~> 1.10"},
       {:phoenix_live_reload, "~> 1.0", only: :dev},
