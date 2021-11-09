@@ -1,4 +1,8 @@
 defmodule VerkWeb.TrackingJobsHandler do
+  @moduledoc """
+  Responsible for tracking jobs.
+  """
+
   @broadcast_interval 1_000
 
   use GenStage

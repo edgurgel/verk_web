@@ -1,4 +1,6 @@
 defmodule VerkWeb.Plug.Mount do
+  @moduledoc false
+
   import Plug.Conn
 
   def init(default), do: default

@@ -1,4 +1,8 @@
 defmodule VerkWeb.RangePaginator do
+  @moduledoc """
+  Range paginator for the pages.
+  """
+
   defstruct [:page, :per_page, :from, :to, :has_next, :has_prev]
 
   def new(total_entries, page \\ 1, per_page \\ 20) do

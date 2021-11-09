@@ -1,4 +1,6 @@
 defmodule VerkWeb.Queue.Helpers do
+  @moduledoc false
+
   import Phoenix.HTML.Link
   import VerkWeb.Router.Helpers
 
