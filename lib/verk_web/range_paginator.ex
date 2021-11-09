@@ -22,5 +22,5 @@ defmodule VerkWeb.RangePaginator do
 
   defp to_int(nil, default), do: default
   defp to_int(page, _) when is_integer(page), do: page
-  defp to_int(page, _), do: Integer.parse(page) |> elem(0)
+  defp to_int(page, _), do: page |> Integer.parse() |> elem(0)
 end

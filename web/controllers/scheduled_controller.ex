@@ -1,6 +1,6 @@
 defmodule VerkWeb.ScheduledController do
   use VerkWeb.Web, :controller
-  alias Verk.{SortedSet, Redis}
+  alias Verk.{Redis, SortedSet}
 
   @schedule_key "schedule"
 

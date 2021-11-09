@@ -6,7 +6,8 @@ defmodule VerkWeb.JobView do
   end
 
   def current_stacktrace(process_info) do
-    info(process_info, :current_stacktrace)
+    process_info
+    |> info(:current_stacktrace)
     |> Exception.format_stacktrace()
     |> Phoenix.HTML.Format.text_to_html()
   end
