@@ -6,6 +6,7 @@ otp_release:
 script:
   - if [[ `elixir -v` = *"1.11"* ]]; then mix format --check-formatted; fi
   - MIX_ENV=test mix test --trace --cover
+  - MIX_ENV=test mix credo --strict
 services:
   - redis-server
 sudo: false
