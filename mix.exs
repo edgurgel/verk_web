@@ -8,7 +8,7 @@ defmodule VerkWeb.Mixfile do
   def project do
     [
       app: :verk_web,
-      version: "1.6.0",
+      version: "1.7.0",
       elixir: "~> 1.11",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [:phoenix, :gettext] ++ Mix.compilers(),
@@ -34,9 +34,9 @@ defmodule VerkWeb.Mixfile do
 
   defp deps do
     [
-      {:phoenix, "~> 1.5.0"},
+      {:phoenix, "~> 1.6"},
       {:phoenix_pubsub, "~> 2.0"},
-      {:phoenix_html, "~> 2.6"},
+      {:phoenix_html, "~> 3.0"},
       {:gettext, "~> 0.16"},
       {:verk, "~> 1.7.1"},
       {:plug_cowboy, "~> 2.0"},

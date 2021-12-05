@@ -11,8 +11,8 @@ defmodule VerkWeb.LayoutView do
   Generates name for the JavaScript view we want to use
   in this combination of view/template.
   """
-  def js_view_name(conn, view_template) do
-    [view_name(conn), template_name(view_template)]
+  def js_view_name(conn) do
+    [view_name(conn), template_name(conn)]
     |> Enum.reverse()
     |> Enum.map(&String.capitalize/1)
     |> Enum.reverse()
@@ -30,8 +30,9 @@ defmodule VerkWeb.LayoutView do
 
   # Removes the extion from the template and reutrns
   # just the name.
-  defp template_name(template) when is_binary(template) do
-    template
+  defp template_name(conn) do
+    conn
+    |> view_template
     |> String.split(".")
     |> Enum.at(0)
   end
