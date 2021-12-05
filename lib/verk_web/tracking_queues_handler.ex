@@ -1,4 +1,8 @@
 defmodule VerkWeb.TrackingQueuesHandler do
+  @moduledoc """
+  Responsible for tracking queues.
+  """
+
   use GenStage
 
   def start_link(pid) do

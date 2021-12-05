@@ -47,7 +47,8 @@ defmodule VerkWeb.Mixfile do
       {:coverex, "~> 1.4", only: :test},
       {:meck, "~> 0.8", only: :test},
       {:timex, "~> 3.3.0"},
-      {:jason, "~> 1.1"}
+      {:jason, "~> 1.1"},
+      {:credo, "~> 1.5", only: [:dev, :test], runtime: false}
     ]
   end
 

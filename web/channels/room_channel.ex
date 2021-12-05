@@ -1,4 +1,6 @@
 defmodule VerkWeb.RoomChannel do
+  @moduledoc false
+
   use Phoenix.Channel
   alias VerkWeb.TrackingJobsHandler
   alias VerkWeb.TrackingQueuesHandler
